@@ -1,0 +1,134 @@
+{% comment %}
+Controls for polygon segmentation
+{% endcomment %}
+<html>
+{% load static%}
+
+<head>
+	<link href="{% static 'via_image/css/dropzone/basic.css' %}" rel="stylesheet">
+	<link href="{% static 'via_image/css/dropzone/dropzone.css' %}" rel="stylesheet">
+</head>
+<div id="ui-controls" class="ui-controls-top">
+	<span class="btn-group" data-toggle="buttons-radio">
+		<button id='btn-draw' type="button" class="btn" disabled="disabled">
+			<i class="icon-edit"></i> Draw </button>
+		<button id='btn-edit' type="button" class="btn" disabled="disabled">
+			<i class="icon-move"></i> Adjust</button>
+	</span>
+	<span class="btn-group">
+		<button id='btn-undo' type="button" disabled="disabled" class="btn">
+			<i class="icon-repeat"></i> Undo </button>
+		<button id='btn-redo' type="button" disabled="disabled" class="btn">
+			<i class="icon-share-alt"></i> Redo</button>
+	</span>
+	<span class="btn-group">
+		<button id='btn-close' type="button" disabled="disabled" class="btn">
+			<i class="icon-ok"></i> Close</button>
+		<button id='btn-delete' type="button" disabled="disabled" class="btn">
+			<i class="icon-trash"></i> Delete</button>
+	</span>
+	<span class="btn-group">
+		<button id='btn-zoom-reset' type="button" disabled="disabled" class="btn">
+			<i class="icon-zoom-out"></i> Reset Zoom</button>
+	</span>
+
+	<!-- <div class="ibox-content">
+		<div class="text-center">
+			<a data-toggle="modal" class="btn btn-primary" href="#modal-form">Upload Image</a>
+		</div>
+		<div id="modal-form" class="modal fade" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						
+							<div class="ibox-content">
+								<form class="form-horizontal">
+									<p>All fields are required</p>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Name of Image</label>
+										<div class="col-lg-10"><input type="name" placeholder="Name" class="form-control">
+										</div>
+									</div>
+
+									<input type="file" name="logo" id="logo">
+
+									<div class="form-group">
+										<div class="col-lg-offset-2 col-lg-10">
+											<div class="i-checks"><label> <input type="checkbox"><i></i>
+													Annotated</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-offset-2 col-lg-10">
+											<button class="btn btn-sm btn-white" type="submit">Upload</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		 -->
+		 <!-- <div class="ibox-content">
+				<div class="text-center">
+				<a data-toggle="modal" class="btn btn-primary" href="#modal-form">Form in simple modal box</a>
+				</div>
+				<div id="modal-form" class="modal fade" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Sign in</h3>
+
+										<p>Sign in today for more expirience.</p>
+
+										<form role="form">
+											<div class="form-group"><label>Email</label> <input type="email" placeholder="Enter email" class="form-control"></div>
+											<div class="form-group"><label>Password</label> <input type="password" placeholder="Password" class="form-control"></div>
+											<div>
+												<button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+												<label> <input type="checkbox" class="i-checks"> Remember me </label>
+											</div>
+										</form>
+									</div>
+									<div class="col-sm-6"><h4>Not a member?</h4>
+										<p>You can create an account:</p>
+										<p class="text-center">
+											<a href=""><i class="fa fa-sign-in big-icon"></i></a>
+										</p>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+
+ -->
+
+		<!-- <span class="btn-upload"> -->
+			<!-- <button id='btn-upload' type="button" class="btn">
+			<input type="file" value="Upload" >
+		
+		<form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+        <input type="submit" value="Upload"/>
+		</form>
+		<img src='{{ MEDIA_URL }}{{ imagefile }}'> -->
+			<!-- <i class="icon-upload" onclick="myfunction()"></i>Upload Image</button> -->
+		<!-- </span> -->
+		{% if extra_ui_controls %}
+		{% include extra_ui_controls %}
+		{% endif %}
+
+		{% if instructions %}
+		<span class="pull-right">
+			<a href="#modal-instructions" role="button" class="btn btn-primary" data-toggle="modal"><em>Instructions</em></a>
+		</span>
+		{% endif %}
+
+
+
+	</div>
+	

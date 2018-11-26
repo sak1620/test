@@ -1,0 +1,85 @@
+{% block content %}
+<div class="row m-t-lg">
+    <div class="col-lg-12">
+        <div class="tabs-container">
+
+            <div class="tabs-left">
+                <ul class="nav nav-tabs">
+                    {% for labeln in labelname %}
+                    <li class="{% if labeln.1 == 'Invoice' %}active{% endif %}">
+                        <a data-toggle="tab" href="#lab-{{labeln.0}}"> {{labeln.1}} </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="tab-content ">
+                    <!-- first tab content -->
+                    {% for lablnn in labelname %}
+                    <div id="lab-{{lablnn.0}}" class="tab-pane {% if lablnn.1 == 'Invoice' %}active{% endif %}">
+                        <div class="panel-body">
+                            <!-- tab 1 content start with add new lebel modal -->
+                          
+                            <div>
+                                <div style="margin: 5px; padding: 5px; text-align:right;">
+                                    <p>
+                                        <button type="button" id="opener_add_label" data-toggle="modal" style="float:right; background-color: #0ABBB3;"
+                                            class="btn btn-primary btn-lg-3" data-target="#myModal_add_label{{lablnn.0}}">Add
+                                            Custom Label
+                                        </button>
+                                    </p>
+                                </div>
+                                <div class="modal inmodal" id="myModal_add_label{{lablnn.0}}" tabindex="-1" role="dialog"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <form action="label_create/" method="POST">
+                                            {% csrf_token %}
+                                            <div class="modal-content animated bounceInRight">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <i class="fa fa-newspaper-o" style="font-size:28px;"></i>&nbsp;&nbsp;Add
+                                                        Custom Label</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        <span class="sr-only">Close</span>
+                                                    </button>
+                                                </div>
+                                                <!-- form for add custom label-->
+                                                <div class="modal-body">
+                                                    <div class="form-group input_fields_wrap">
+                                                        <label>Label</label>
+                                                        <div>
+                                                            <input type="text" name="labeltext" placeholder="Enter Label"
+                                                                class="form-control">
+                                                            <!-- <a class="add_field_button"><i class="fa fa-plus"></i></a> -->
+                                                            <input type="hidden" name="usecaseid" value="{{lablnn.0}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- tab 1 ends here -->
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- <input type="checkbox" class="js-switch_3" /> -->
+
+
+{% endblock %}

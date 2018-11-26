@@ -1,0 +1,149 @@
+{% load humanize %}
+{% load static %}
+
+<h2>What to Draw</h2> <p>Please draw shapes around objects that pertrain to
+driving scene and correspond to the labels outlined in <i>labels.txt</i>. The
+goal is to generate segmentations that are as fine grained as possible for visual
+prediction tasks on urban street scenes. Some example categories include:</p><br>
+<p>Cars</p>
+<p>Pedestrians</p>
+<p>Traffic Lights and Traffic Signs</p>
+<br>
+<p>Please make the region as tight as possible.  <b>Your shape should exactly
+follow the material boundary.</b>  Use the &quot;Adjust&quot; button to improve the shape boundary, after you have drawn the shape.</p>
+
+<p>If there are objects with holes in them (i.e fences), make sure to <b>only label the foreground objects</b>. More
+detailed labeling protocol information can be found at <a href='https://www.cityscapes-dataset.com/dataset-overview/#labeling-policy'>The Cityscapes Dataset Website</a>. We follow a similar labeling policy here.</p>
+
+<p>The sections below will outline how to use the tool and provide some examples, good and bad, as guidlines
+for effective segmentation of images</p>
+
+<p>Once you have drawn around all distinct objects in the image, click the &quot;Submit&quot; and follow the instructions to proceed.</p>
+<br/>
+
+<h2>How to draw</h2>
+<div class="row-fluid">
+	<div class="span12">
+		<ul class="thumbnails">
+			<li class="span4"> <div class="thumbnail"><p class="caption">
+				<span class="badge">1</span> Click on the object boundary</p>
+				<img src="{% static 'via_image/img/draw1.png' %}" alt=""></div> </li>
+			<li class="span4"> <div class="thumbnail"><p class="caption">
+				<span class="badge">2</span>Click along the object boundary</p>
+				<img src="{% static 'via_image/img/draw2.png' %}" alt=""></div> </li>
+			<li class="span4"> <div class="thumbnail"><p class="caption">
+				<span class="badge">3</span> Click Close when finished</p>
+				<img src="{% static 'via_image/img/draw3.png' %}" alt=""></div> </li>
+		</ul>
+	</div>
+</div>
+
+<h2>Adjusting your shapes</h2>
+<p>After drawing a polygon, please adjust its edges so that it better fits the true boundary.
+When you are done adjusting, switch back to &quot;Draw&quot; mode to draw more polygons.</p>
+
+<div class="row-fluid">
+	<div class="span12">
+		<ul class="thumbnails">
+			<li class="span4"> <div class="thumbnail"><p class="caption">
+				<span class="badge">1</span> Switch to &quot;Adjust&quot; mode.</p>
+				<img src="{% static 'via_image/img/adjust1.png' %}" alt=""></div> </li>
+			<li class="span4"> <div class="thumbnail"><p class="caption">
+				<span class="badge">2</span> Click on the polygon.</p>
+				<img src="{% static 'via_image/img/adjust2.png' %}" alt=""></div> </li>
+			<li class="span4"> <div class="thumbnail"><p class="caption">
+				<span class="badge">3</span> Drag the small white circles.</p>
+				<img src="{% static 'via_image/img/adjust3.png' %}" alt=""></div> </li>
+		</ul>
+	</div>
+</div>
+
+
+<h2>Good examples</h2>
+
+<div class="row-fluid">
+	<div class="span6">
+		<div class="thumbnail">
+			<img src="{% static 'via_image/img/good1.png' %}"  alt="" />
+		</div>
+	</div>
+	<div class="span6">
+		<div class="thumbnail">
+			<img src="{% static 'via_image/img/good2.png' %}"  alt="" />
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<div class="thumbnail">
+			<img src="{% static 'via_image/img/good3.png' %}"  alt="" />
+		</div>
+	</div>
+</div>
+<br/>
+
+<h2>Bad examples</h2>
+<p>Here are some poor segmentations that will be rejected during review. Avoid rough outlines and try 
+to seperate objects as best as possible</p>
+
+<div class="row-fluid">
+	<div class="span6">
+		<div class="thumbnail">
+			<img src="{% static 'via_image/img/bad1.png' %}"  alt="" />
+		</div>
+	</div>
+	<div class="span6">
+		<div class="thumbnail">
+			<img src="{% static 'via_image/img/bad2.png' %}"  alt="" />
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<div class="thumbnail">
+			<img src="{% static 'via_image/img/bad3.png' %}"  alt="" />
+		</div>
+	</div>
+</div>
+<br/>
+<h2>Add Labels</h2>
+<p>Please add the labels first before segmenting the image. </p>
+
+<p>To close the shape, you do not need to click near the first point. You can
+can click &quot;Close&quot; to connect the first and last point.</p>
+
+<h2>Zoom in to see better</h2>
+<p>Scroll with the mouse wheel to zoom in.  Click &quot;Reset Zoom&quot; or press escape to reset back to normal.</p>
+<br/>
+
+<h2>Move around in the image</h2>
+<p>Press 'space' and drag with the mouse to move around in the image (panning).  You can also move press the arrow keys to move.</p>
+<br/>
+
+<h2>Other controls</h2>
+<div class="row-fluid">
+	<div class="span12">
+		<img src="{% static 'via_image/img/controls.png' %}" alt="" />
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<dl class="dl-horizontal">
+			<dt>Undo</dt> <dd>If you make a mistake, click &quot;Undo&quot;</dd>
+			<dt>Redo</dt> <dd>Redo and action previously undone</dd>
+			<dt>Close</dt> <dd>Click the Close button to close a polygon</dd>
+			<dt>Delete</dt> <dd>You can delete polygons by selecting them with the &quot;Adjust&quot; button and pressing Delete.</dd>
+			<dt>Reset Zoom</dt> <dd>When zoomed in, you you can click &quot;Reset Zoom&quot; to zoom out again.</dd>
+			<dt>Instructions</dt> <dd>Show this page during the task.</dd>
+		</dl>
+	</div>
+</div>
+<br/>
+
+
+<br/>
+<h2>Why are we doing this?</h2>
+<p>We want to build a scalable platform for fine-grained annotation of urban scenes and demonstrate its effectiveness by collecting a large-scale database of driving scenes. By collecting these images and their
+annotations we seek to advance the state of computer vision in autonomous driving and alleviate the lack of
+supervised data in this domain</p>
+<br/>

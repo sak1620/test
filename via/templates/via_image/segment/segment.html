@@ -1,0 +1,178 @@
+{% extends "via_image/segment/base_fixed.html" %}
+{% load humanize %}
+{% load compress %}
+{% load static %}
+
+{% block css %}{{ block.super }}
+<head>
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/font-awesome.css' %}" />
+</head>
+<style scoped>
+	canvas { border: 1px solid #ec8b8b; }
+	body { padding: 0 }
+  	em { color: rgb(250, 240, 240); }
+  	/* .row {
+  		max-width: 100%;
+	} */
+.button{
+	background-color: aquamarine;	
+    margin:auto;
+	display:block;
+	border-radius: 2px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+
+}
+.buttons{
+	background-color: rgb(202, 60, 60);	
+    margin-right: 10px;
+	display:block;
+	border-radius: 4px;
+    color: white;
+    padding:3.5px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+	float: left;
+
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="mt-top-nohover">
+	<div id="mt-instructions">
+		<span style="font-size: 200%; background: inherit;">
+			<!-- <a href="/"><em>Labeling Tool</em></a></span> -->
+			<!-- <link rel="icon" href="{% static 'via_image/img/logo.png' %}" type="image/png"> -->
+			<!-- <img alt="image" class="img" src="{% static 'via_image/img/logo.png' %}" style="height: 75px;width: 95px;"> -->
+			<img alt="image" class="img" src="http://aitouch.in/wp-content/themes/aitouch/images/logo.png" style="height: 30px;width: 150px;">
+			
+			<a href="../../../operator" style="margin-left:35%" style="color:white">
+				<i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+				<span style="font-size: 20px;color: white" class="nav-label">Home</span>
+			</a>	
+		<span class="pull-right" style="padding: 0% ">
+			<!-- <button type="button" id='btn-submit' class="btn btn-success" disabled="disabled"><em>Submit</em></button> -->
+			<button type="button" id = "btn-submit" class="btn btn-success" disabled="disabled">Submit</button>
+			<button type="button" class="btn btn-danger"><a style="color: white" href="/via_image/">Cancel</a></button>
+
+		</span>
+	</div>
+</div>
+{% include "via_image/segment/controls.html" %}
+<div id="mt-container">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="span2">
+					<div class="sidebar">
+						<ul class="nav nav-list" id="labels">
+							<li>
+								<h3 align="center">Labels</h3>
+							</li>
+							<button type="button" style="background-color:rgb(81, 163, 81)" class="button" data-toggle="modal" data-target="#myModal">Add Labels</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" role="dialog">
+							  <div class="modal-dialog">
+							  
+								<!-- Modal content-->
+								<div class="modal-content">
+								  <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Add new Labels</h4>
+								  </div>
+								  <div class="modal-body">
+									<input type="text" id="label_name">
+								  </div>
+								  <div class="modal-footer">
+									<button type="button" id="save_label" class="btn btn-default" data-dismiss="modal">Submit</button>
+								  </div>
+								</div>
+								
+							  </div>
+							</div>
+							<li class="divider"></li>
+						</ul>
+					</div>
+				</div>
+				<div class='span10'>
+					<div id="mt-image"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block modals %}
+{% include "via_image/modal/modal_instructions.html" %}
+{% include "via_image/modal/modal_loading.html" %}
+{% include "via_image/modal/modal_error.html" %}
+{% include "via_image/modal/modal_form.html" %}
+{% include "via_image/modal/modal_areyousure.html" %}
+{% include "via_image/modal/mt_modal_feedback.html" %}
+{% include "via_image/modal/poly_modal_intersect.html" %}
+{% endblock %}
+
+{% block scripts %}
+
+{% include "via_image/segment/control_scripts.html" %}
+
+<script type="text/javascript">
+	window.labels = [];
+	window.coords = [];
+	window.template_args = {
+		photo_url: '{{ content.url }}',
+		photo_id: {{ content.id }}
+};
+
+	console.log("height",{{height}})
+	console.log("width",{{width}})
+	$("#mt-image").attr("data-height","{{height}}")
+	$("#mt-image").attr("data-width","{{width}}")
+	{% if min_vertices %} window.min_vertices = {{ min_vertices }}; {% endif %}
+	{% if label_html %} window.labelHTML = '{{ label_html |safe }}'; {% endif %}
+	{% if labels %} window.labels = {{ labels | safe }}; {% endif %}
+	{% if coords %} window.coords = {{ coords | safe }}; {% endif %}
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		$(document).on('click',"#save_label",function () {
+				// event.preventDefault();
+				console.log("edit form submitted!") // sanity check
+				// console.log($(this).data("id"));
+				// id_up = $(this).data("id");
+	
+				$.post("../../addlabel/", {
+					label: $('#label_name').val(),
+					csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+				}, function (response) {
+	
+					console.log(response);
+					location.reload();
+					
+	
+				});
+	
+			});
+		});
+</script>
+
+{% compress js %}
+<script type="text/javascript" src="{% static 'via_image/js/common/get_url_params.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/segment/submit.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/segment/segment.js' %}"></script>
+{% endcompress %}
+
+{% endblock %}

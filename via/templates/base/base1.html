@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+	<title>Image Annotation Tool</title>
+	<meta name="description" content='{% if head_description %}{{ head_description }}{% else %}Tools for extracting semantic segmentation labels from driving images{% endif %}'/>
+	<meta name="author" content="{% if head_author %}{{ head_author }}{% else %}UC Berkeley{% endif %}"/>
+
+	<link href="{% static 'via_image/css/jquery-ui-1.9.1.custom.min.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static  'via_image/css/bootstrap-2.2.1.min.css' %}" rel="stylesheet" type="text/css"/>
+	<link rel="icon" href="{% static 'via_image/img/logo.png' %}" type="image/png">
+	{% block css_responsive %}
+	<link href="{% static 'via_image/css/bootstrap-responsive.min.css' %}" rel="stylesheet" type="text/css"/>
+	{% endblock %}
+
+	{% block css %}
+	{% endblock %}
+</head>
+
+{% block body_tag %}
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block subnav %}{% endblock %}
+
+{% block container %}
+{% block content_tag %}
+<div id='content-container' class='container'>
+{% endblock %}
+{% block content %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% include "via_image/base_scripts.html" %}
+{% block scripts %}{% endblock %}
+
+{% block modals %}
+{% include "via_image/modal/modal_error.html" %}
+{% include "via_image/modal/modal_loading.html" %}
+{% include "via_image/modal/modal_form.html" %}
+{% endblock %}
+
+</body>
+</html>

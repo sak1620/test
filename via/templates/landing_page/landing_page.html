@@ -1,0 +1,792 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Simplify.ai</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- <meta content="" name="keywords">
+  <meta content="" name="description"> -->
+
+  <!-- Favicons -->
+  <link href="{% static 'landing_page/img/simplifi.png' %}" rel="icon">
+  <link href="{% static 'landing_page/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/bootstrap.min.css' %}" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'landing_page/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'landing_page/lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'landing_page/lib/unveil-effects/animations.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'landing_page/css/style.css' %}" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
+
+  <!-- =======================================================
+    Template Name: WowLanding
+    Template URL: https://templatemag.com/wowlanding-bootstrap-landing-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+  <style>
+
+.button-custom {
+  font-family: 'Hind Guntur', sans-serif;
+  font-size: 15px;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 0.025em;
+
+  background: #379aff;
+  /* padding: 18px 0 11px; */
+  height:40px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 2px;
+  min-width: 120px;
+  overflow: hidden;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-custom span {
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+.button-custom:after,
+.button-custom:before {
+  /* padding: 18px 0 11px; */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(-100% - 30px);
+  height: 100%;
+  width: calc(100% + 20px);
+  color: #fff;
+  border-radius: 2px;
+  transform: skew(-25deg);
+}
+
+.button-custom:after {
+  background: #fff;
+  transition: left 0.8s cubic-bezier(0.86, 0, 0.07, 1) 0.2s;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.button-custom:before {
+  background: #13c276;
+  z-index: 5;
+  transition: left 1s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.button-custom:hover:after {
+  left: calc(0% - 10px);
+  transition: left 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.button-custom:hover:before {
+  left: calc(0% - 10px);
+  transition: left 1s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+canvas {
+  width: 420px;
+  height: 420px;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ********** HEADER SECTION ********** -->
+  <div id="h">
+    <div class="container">
+      <div class="row centered">
+        <h3 class="logo aligncenter">SIMPLIFI.AI</h3>
+        <div style=" position:relative;min-height: 100%;">
+            <canvas>
+              </canvas>
+              <button class="button-custom" type="button" value="yzk">
+                <!-- xyz -->
+                    <span><a href="/login" style="color:white">Website</a></span>
+                </button>
+        </div>
+        <img src="{% static 'landing_page/img/simplifi.png' %}" style="widows: 200px;height:150px;padding-top: 80px;">
+
+        <h1>One stop annotation tool<br />for images and videos.</h1>
+
+        <!-- <div class="col-md-6 col-md-offset-3 mt">
+          <form role="form" action="#" method="post" enctype="plain">
+            <input type="email" name="email" class="subscribe-input" placeholder="Enter your e-mail address..." required>
+            <button class='btn btn-lg btn-green subscribe-submit' type="submit">Yes, Please</button>
+          </form>
+        </div> -->
+      </div>
+      
+      <!--/row -->
+
+      <div class="row">
+        <div class="continue">
+          <i class="ion-chevron-down"></i>
+        </div>
+      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/header -->
+
+  <!-- ********** CALL TO ACTION SECTION ********** -->
+  <div id="cta">
+    <div class="container">
+      <div class="row">
+        <h2>It's time make your work easier. Let us help you.</h2>
+      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/CTA -->
+
+  <!-- ********** INTRODUCTION SECTION ********** -->
+  <div class="container mt">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 centered">
+        <h2>More About Simplify.ai</h2>
+        <hr class="aligncenter">
+      </div>
+      <!-- /col-md-6-->
+    </div>
+    <!--/row -->
+
+    <div class="row mt">
+      <div class="col-md-6">
+        <p><i class="ion-android-information green alignleft"></i> This platform is very helpful for businesses that
+          perform image and video annotation task.</p>
+        <p class="mt"><i class="ion-android-information green alignleft"></i> Using this platform, a manager can create
+          batches of images and videos and assign these batches to his/her team. We also provide intuitive analytics so
+          that the manager knows what is the status of the assigned batches. </p>
+        <p class="mt"><i class="ion-android-information green alignleft"></i> The operator is required to do the
+          annotation task for the image or video.</p>
+      </div>
+      <!--/col-md-6 -->
+
+      <div class="col-md-6 of">
+        <img src="img/browser.png" class="img-responsive aligncenter" alt="" data-effect="slide-right">
+      </div>
+    </div>
+    <!--/row -->
+  </div>
+  <!--/container -->
+
+  <!-- ********** HOW IT WORKS SECTION ********** -->
+  <div id="g">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 centered">
+          <h2>How It Works</h2>
+          <hr class="aligncenter">
+        </div>
+        <!-- /col-md-6-->
+      </div>
+      <!--/ row-->
+
+      <div class="row mt">
+        <div class="col-md-4">
+          <h4 class="green">STEP 1</h4>
+          <p>Register your company with us.</p>
+          <h4 class="green mt">STEP 2</h4>
+          <p>Add managers and operators in your company.</p>
+        </div>
+        <!--/col-md-4-->
+        <div class="col-md-4">
+          <img src="img/item.png" alt="" class="img-responsive aligncenter" data-effect="slide-bottom">
+        </div>
+        <!--/col-md-4-->
+        <div class="col-md-4">
+          <h4 class="green">STEP 3</h4>
+          <p>Manager will create batches of images and videos and assign them to respective operators.</p>
+          <h4 class="green mt">STEP 4</h4>
+          <p>Operator will complete the annotation task and report the completion to his manager.</p>
+        </div>
+        <!--/col-md-4-->
+      </div>
+      <!--/row -->
+
+     
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/G -->
+
+  <!-- ********** CALL TO ACTION SECTION ********** -->
+  <div id="cta">
+    <div class="container">
+      <div class="row">
+        <h2>More than <b>65%</b> of users check their mail on a mobile device.</h2>
+        <h2>In 2014, <b>40%</b> made a purchase through their smartphone.</h2>
+      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/CTA -->
+
+  <!-- ********** FEATURES SECTION - Part 1 ********** -->
+  <div class="container mt">
+    <div class="row">
+      <div class="col-md-4 centered">
+        <i class="ion-compass green big"></i>
+        <p class="green">Seamless annotation</p>
+        <p class="text16">A very handy tool for annotation of images and videos.</p>
+      </div>
+      <!--/col-md-4-->
+      <div class="col-md-4 centered">
+        <i class="ion-ios-analytics green big"></i>
+        <p class="green">Interactive analytics</p>
+        <p class="text16">Interactive charts for task tracking saves you a lot of time.</p>
+      </div>
+      <!--/col-md-4-->
+      <div class="col-md-4 centered">
+        <i class="ion-earth green big"></i>
+        <p class="green">Work in every place</p>
+        <p class="text16">This tool can be accessed from anywhere. You just need an internet connection and a web browser.</p>
+      </div>
+      <!--/col-md-4-->
+    </div>
+    <!--/row -->
+
+    <div class="row mt">
+      <div class="col-md-12">
+        <img src="{% static 'landing_page/img/chart.png' %}" class="img-responsive aligncenter" alt="" data-effect="slide-bottom">
+      </div>
+      <!--/col-md-12-->
+    </div>
+    <!--/row -->
+  </div>
+  <!--/container -->
+
+  <!-- ********** FEATURES SECTION - Part 2 ********** -->
+  <div id="g">
+    <div class="container">
+      <div class="row mt">
+        <div class="col-md-6 col-md-offset-3 centered">
+          <h2>App Features</h2>
+          <hr class="aligncenter">
+          <h4>What You Need To Know</h4>
+        </div>
+        <!-- /col-md-6-->
+      </div>
+      <!--/row -->
+
+      <div class="row mt">
+        <div class="col-md-4 centered">
+          <i class="ion-cube green big"></i>
+          <p class="green">All Included in a big package</p>
+          <p class="text16">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+        <!--/col-md-4-->
+        <div class="col-md-4 centered">
+          <i class="ion-document-text green big"></i>
+          <p class="green">Complete documentation</p>
+          <p class="text16">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+        <!--/col-md-4-->
+        <div class="col-md-4 centered">
+          <i class="ion-email green big"></i>
+          <p class="green">Free email support</p>
+          <p class="text16">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+        <!--/col-md-4-->
+      </div>
+      <!--/row -->
+
+      <div class="row mt">
+        <div class="col-md-4 centered">
+          <i class="ion-eye green big"></i>
+          <p class="green">Retina device ready</p>
+          <p class="text16">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+        <!--/col-md-4-->
+        <div class="col-md-4 centered">
+          <i class="ion-fireball green big"></i>
+          <p class="green">Hot trends used</p>
+          <p class="text16">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+        <!--/col-md-4-->
+        <div class="col-md-4 centered">
+          <i class="ion-heart green big"></i>
+          <p class="green">Crafted with love</p>
+          <p class="text16">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+        <!--/col-md-4-->
+      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/g -->
+
+  <!-- ********** TESTIMONIAL SECTION ********** -->
+  <div id="testimonial">
+    <div class="container">
+      <div class="row mt">
+        <div class="col-lg-8 col-lg-offset-2 centered">
+          <!-- Carousel
+				    ================================================== -->
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="{% static 'landing_page/img/ui-01.jpg' %}" class="img-circle aligncenter" width="120" alt="First slide">
+                <h3>Mark Turin</h3>
+                <hr class="aligncenter">
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration in some form, by injected humour, or randomised words which don't look even slightly
+                  believable.</p>
+              </div>
+              <div class="item">
+                <img src="{% static 'landing_page/img/ui-02.jpg' %}" class="img-circle aligncenter" width="120" alt="Second slide">
+                <h3>Sarah Schmidt</h3>
+                <hr class="aligncenter">
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration in some form, by injected humour, or randomised words which don't look even slightly
+                  believable.</p>
+              </div>
+              <div class="item">
+                <img src="{% static 'landing_page/img/ui-03.jpg' %}" width="120" class="img-circle aligncenter" alt="Third slide">
+                <h3>Phil Carsons</h3>
+                <hr class="aligncenter">
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration in some form, by injected humour, or randomised words which don't look even slightly
+                  believable.</p>
+              </div>
+            </div>
+          </div>
+          <!-- /.carousel -->
+        </div>
+        <!--/col-lg-8 -->
+      </div>
+      <!--/row -->
+    </div>
+    <!--/container -->
+  </div>
+  <!--/testimonial -->
+
+
+  <!-- ********** REGISTER SECTION ********** -->
+  <!-- <div id="g">
+    <div class="container">
+      <div class="row mt">
+        <div class="col-md-6 col-md-offset-3 centered">
+          <h2>Stay In Contact</h2>
+          <hr class="aligncenter">
+          <h4>We Are Social People</h4>
+        </div>
+      
+      </div>
+    </div>
+  </div> -->
+  <!--/g -->
+
+  <!-- ********** END SECTION ********** -->
+  <!-- <div class="container">
+    <div class="row mtb">
+      <div class="col-md-6 col-md-offset-3 centered">
+        <p class="text28">
+          <a href="#"><i class="ion-social-twitter"></i></a>
+          <a href="#"><i class="ion-social-instagram"></i></a>
+          <a href="#"><i class="ion-social-facebook"></i></a>
+        </p>
+        <hr class="aligncenter">
+        <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+
+          <div class="form-group">
+            <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4"
+              data-msg="Please enter at least 4 chars">
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email"
+              data-msg="Please enter a valid email">
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4"
+              data-msg="Please enter at least 8 chars of subject">
+            <div class="validate"></div>
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5"
+              data-rule="required" data-msg="Please write something for us"></textarea>
+            <div class="validate"></div>
+          </div>
+
+          <div class="loading"></div>
+          <div class="error-message"></div>
+          <div class="sent-message">Your message has been sent. Thank you!</div>
+
+          <div class="form-send">
+            <button type="submit" class="btn btn-large">Send Message</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <!--/row -->
+  </div>
+  <!--/container -->
+
+  <!-- <div id="googleMap" style="width:100%;height:400px;"></div> -->
+
+  <div class="container-fluid bg-grey">
+      <h2 class="text-center">CONTACT US</h2>
+      <hr class="aligncenter">
+      <div class="row">
+        <div align="center">
+          <p>Contact us and we'll get back to you within 24 hours.</p>
+          <p><span class="glyphicon glyphicon-map-marker"></span> Unit 201-209, 247-250, 2nd Floor, Tower A,<br> SpazeiTech Park, Sector 49, Sohna Road, Gurgaon, India – 122018</p>
+          <p><span class="glyphicon glyphicon-phone"></span> 0124 484 6919</p>
+          <p><span class="glyphicon glyphicon-envelope"></span> info@aitouch.in</p> 
+        </div>
+      </div>
+    </div>
+
+  <div id="copyrights">
+    <div class="container">
+      <div class="credits">
+        <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/wowlanding-bootstrap-landing-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+        Created with WowLanding template by <a href="https://templatemag.com/">TemplateMag</a>
+      </div>
+    </div>
+  </div>
+  <!-- / copyrights -->
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'landing_page/lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'landing_page/lib/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'landing_page/lib/php-mail-form/validate.js' %}"></script>
+  <script src="{% static 'landing_page/lib/unveil-effects/unveil-effects.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'landing_page/js/main.js' %}"></script>
+
+  <script>
+    function myMap() {
+      // var mapProp= {
+      //     center:new google.maps.LatLng( 28.414706, 77.042029),
+      //     zoom:5,
+      // };
+      var map = new google.maps.Map(document.getElementById('googleMap'), {
+        center: { lat: 28.414706, lng: 77.042029 },
+        zoom: 15
+      });
+
+      // var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+      var infowindow = new google.maps.InfoWindow();
+      var service = new google.maps.places.PlacesService(map);
+
+      service.getDetails({
+        placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
+      }, function (place, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+          });
+          google.maps.event.addListener(marker, 'click', function () {
+            infowindow.setContent('<div><strong>' + "Hello" + '</strong><br>' +
+              'Place ID: ' + place.place_id + '<br>' +
+              place.formatted_address + '</div>');
+            infowindow.open(map, this);
+          });
+        }
+      });
+    }
+
+  </script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjqDLakoY_hrONUsiJz5PJsfimN8NbkYA&libraries=places&callback=myMap"></script>
+  <script>
+  
+var canvas = document.querySelector('canvas');
+		canvas.width = 840;
+		canvas.height = 840;
+var context = canvas.getContext('2d');
+var currentFrame = 0;
+var circles = [];
+var circleCount = 10;
+
+
+
+// ---------
+// LIFECYCLE
+// ---------
+
+function update() {
+
+	// ------------
+	// Update state
+	// ------------
+
+	currentFrame++;
+
+	_projection.refZ = 400;
+	_projection.fLength = 102;
+
+	for(var i = 0; i < circles.length; i++) {
+		_projection.doProjection(circles[i].shape);
+		_projection.rotateY(circles[i].shape, circles[i].rotationX);
+		_projection.rotateX(circles[i].shape, circles[i].rotationY);
+	}
+
+
+
+	// ------
+	// Render
+	// ------
+
+	render();
+}
+
+
+
+
+// ------
+// Render
+// ------
+
+function render() {
+
+	// -----
+	// Clear
+	// -----
+
+	context.clearRect(0, 0, canvas.width, canvas.height);
+
+
+
+	// -----------------
+	// Background circle
+	// -----------------
+
+	context.beginPath();
+	context.fillStyle = 'rgba(255,255,255, 0)';
+	context.lineWidth = 5;
+	context.arc(
+		canvas.width/2,
+		canvas.height/2,
+		260,
+		0,
+		Math.PI * 2,
+		false
+	);
+	context.fill();
+
+
+
+	// ----------------
+	// Particle circles
+	// ----------------
+
+	for(var i = 0; i < circles.length; i++) {
+		circles[i].render();
+	}
+
+
+
+	// ----
+	// Loop
+	// ----
+
+	requestAnimationFrame(update);
+
+}
+
+
+
+// ---------------
+// Start Animation
+// ---------------
+
+requestAnimationFrame(update);
+
+
+
+// -------------
+// 3D Projection
+// -------------
+
+var Basic3DProjection = function() {
+
+	this.projCenterX = 0;
+	this.projCenterY = 0;
+	this.fLength = 400;
+	this.refZ = 400;
+
+	this.getScaleFromZ = function(z) {
+		if (this.fLength +z == 0) {
+			return 0.001;
+		} else {
+			return this.refZ/(this.fLength+z);
+		}
+	}
+
+	this.doProjection = function(_object) {
+
+		var x	= _object.posX*this.getScaleFromZ(_object.posZ)+this.projCenterX;
+		var y	= _object.posY*this.getScaleFromZ(_object.posZ)+this.projCenterY;
+		var y0z0	= this.getScaleFromZ(0);
+
+		_object.screenX = x;
+		_object.screenY = y-y0z0;
+		_object.scale = this.getScaleFromZ(_object.posZ);
+		_object.pastViewPoint = _object.posZ > this.refZ;
+
+	}
+
+	this.rotateY = function(object, ang) {
+		var _cos = Math.cos(ang);
+		var _sin = Math.sin(ang);
+
+		var tz = object.posZ * _cos - object.posX * _sin;
+		var tx = object.posZ * _sin + object.posX * _cos;
+		object.posX = tx;
+		object.posZ = tz;
+		this.doProjection(object);
+	}
+
+	this.rotateX = function(object, ang) {
+		var _cos = Math.cos(ang);
+		var _sin = Math.sin(ang);
+
+		var ty = object.posY * _cos - object.posZ * _sin;
+		var tz = object.posY * _sin + object.posZ * _cos;
+		object.posY = ty;
+		object.posZ = tz;
+		this.doProjection(object);
+	}
+
+	this.rotateZ = function(object, ang) {
+		var _cos = Math.cos(ang);
+		var _sin = Math.sin(ang);
+
+		var object = objects[i];
+		var tx = object.posX * _cos - object.posY * _sin;
+		var ty = object.posX * _sin + object.posY * _cos;
+		object.posX = tx;
+		object.posY = ty;
+		this.doProjection(object);
+	}
+
+}
+
+var _projection = new Basic3DProjection();
+		_projection.projCenterX	= canvas.width/2;
+		_projection.projCenterY	= canvas.height/2;
+
+
+
+// --------
+// 3D Shape
+// --------
+
+var Basic3DObject = function (x, y, z, size) {
+
+	this.posX = x;
+	this.posY = y;
+	this.posZ = z;
+	this.dispSize = size;
+
+	this.screenX = 0;
+	this.screenY = 0;
+
+	this.scale = 1;
+	this.pastViewPoint = false;
+
+}
+
+
+function createCircle() {
+	this.shape = new Basic3DObject(0, 0, 68, 0);
+	this.rotationX;
+	this.rotationY;
+	this.size;
+
+	this.render = function() {
+		context.beginPath();
+		context.strokeStyle = 'rgba(182,182,182, ' + (this.shape.posZ * -1) / 60 + ')';
+		context.fillStyle = 'rgba(182,182,182, ' + (this.shape.posZ * -1) / 60 + ')';
+		context.lineWidth = 2 * this.size;
+		context.arc(
+			this.shape.screenX,
+			this.shape.screenY,
+			this.size * this.shape.scale,
+			0,
+			Math.PI * 2,
+			false
+		);
+		if(this.fillOrStroke === 'fill') {
+			context.fill();
+		} else {
+			context.stroke();
+		}
+	}
+}
+
+for(var i = 0; i < circleCount; i++) {
+	var tempCircle = new createCircle();
+
+	if(Math.random() < 0.5) {
+		tempCircle.rotationX = Math.random() / 100;
+	} else {
+		tempCircle.rotationX = (Math.random() / 100) * -1;
+	}
+
+	if(Math.random() < 0.5) {
+		tempCircle.fillOrStroke = 'fill';
+	} else {
+		tempCircle.fillOrStroke = 'stroke';
+	}
+
+	if(Math.random() < 0.5) {
+		tempCircle.rotationY = Math.random() / 100;
+	} else {
+		tempCircle.rotationY = Math.random() / 100 * -1;
+	}
+
+	tempCircle.size = Math.random() * 2;
+
+	circles.push(tempCircle);
+}
+
+  </script>
+</body>
+
+</html>

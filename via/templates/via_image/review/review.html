@@ -1,0 +1,127 @@
+{% extends "via_image/segment/base_fixed.html" %}
+{% load humanize %}
+<!-- {% load compress %} -->
+{% load static %}
+
+{% block css %}{{ block.super }}
+<head>
+	<!-- <link rel="stylesheet" href="{% static 'vatic/css/stylesheet.css' %}">	 -->
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/animate.css' %}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static 'via_superadmin/css/bootstrap.min.css' %}" /> -->
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static 'via_superadmin/css/font-awesome.css' %}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/modal_style.css' %}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/font-awesome.css' %}" />
+
+</head>
+
+<style>
+	canvas { border: 1px solid #969696; }
+	body { padding: 0 }
+  	em { color: white; }
+  	.row {
+  		max-width: 100%;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- <div class="wrapper" style="background-color:rgb(255, 255, 255);height:100%;padding:0px">
+	<div class="row border-bottom" style="background-color:rgb(255, 255, 255);">
+	  <nav class="navbar navbar-static col-lg-12" style="background-color:#057EB2;">
+		<div class="navbar-header col-lg-4">
+		  <span>
+			<img alt="image" class="img" src="http://aitouch.in/wp-content/themes/aitouch/images/logo.png" style="height: 50px;width: 150px;">
+		  </span>
+		</div>
+		<div class="col-lg-4" style="text-align:center;padding: 10px;">
+		  <a href="../" class="homecolor">
+			<i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+			<span style="font-size: 20px;color: white" class="nav-label">Home</span>
+		  </a>
+		</div>
+		<div class="col-lg-4 homecolor" style="text-align: right;padding:5px;">
+		  {{ request.user.first_name}}
+		  <br>
+		  <a href="../../logout" class="homecolor">
+			<i class="fa fa-sign-out"></i> Log out
+		  </a>
+  
+		</div>
+	  </nav>
+	</div>
+</div> -->
+<div id="mt-top-nohover">
+	<div id="mt-instructions">
+		<img alt="image" class="img" src="http://aitouch.in/wp-content/themes/aitouch/images/logo.png" style="height: 30px;width: 150px;">
+		
+				<a href="../../../operator" style="margin-left:35%" style="color:white">
+				  <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+				  <span style="font-size: 20px;color: white" class="nav-label">Home</span>
+				</a>
+	
+		<span class="pull-right">
+ 			<button type="button" id='btn-submit' class="btn btn-success" disabled="disabled"><em>Accept</em></button>
+ 			<button type="button" id='btn-reject' class="btn btn-danger" disabled="disabled"><em>Reject</em></button>	
+ 		</span>
+	</div>
+</div>
+	{% include "via_image/segment/controls.html" %}
+<div id="mt-container">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="span2">
+					<div class="sidebar">
+						<ul class="nav nav-list" id="labels">
+							<li><h3 align="center">Labels</h3></li>
+							<li class="divider"></li>
+						</ul>
+					</div>
+				</div>
+				<div class='span10'>
+					<div id="mt-image"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block modals %}
+	{% include "via_image/modal/modal_instructions.html" %}
+	{% include "via_image/modal/modal_loading.html" %}
+	{% include "via_image/modal/modal_error.html" %}
+	{% include "via_image/modal/modal_form.html" %}
+	{% include "via_image/modal/modal_areyousure.html" %}
+	{% include "via_image/modal/mt_modal_feedback.html" %}
+	{% include "via_image/modal/poly_modal_intersect.html" %}
+{% endblock %}
+
+{% block scripts %}
+
+{% include "via_image/segment/control_scripts.html" %}
+<script type="text/javascript">
+window.labels = [];
+window.coords = [];
+window.template_args = {
+	photo_url: '{{ content.url }}',
+	photo_id: {{ content.id }}
+};
+
+console.log("height",{{height}})
+console.log("width",{{width}})
+$("#mt-image").attr("data-height","{{height}}")
+$("#mt-image").attr("data-width","{{width}}")
+{% if min_vertices %} window.min_vertices = {{ min_vertices }}; {% endif %}
+{% if label_html %} window.labelHTML = '{{ label_html |safe }}'; {% endif %}
+{% if labels %} window.labels = {{ labels | safe }}; {% endif %}
+{% if coords %} window.coords = {{ coords | safe }}; {% endif %}
+</script>
+
+{% compress js %}
+<script type="text/javascript" src="{% static 'via_image/js/common/get_url_params.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/segment/submit.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/segment/segment.js' %}"></script>
+{% endcompress %}
+
+
+{% endblock %}

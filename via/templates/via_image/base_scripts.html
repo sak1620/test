@@ -1,0 +1,14 @@
+{% load compress %}
+{% load static %}
+
+{% compress js %}
+<script type="text/javascript" src="{% static 'via_image/js/lib/jquery-1.8.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/lib/jquery-ui-1.9.1.custom.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/lib/bootstrap-2.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/lib/json2.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/lib/csrf.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/hacks.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/modals.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/scroll.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/ui_events.js' %}"></script>
+{% endcompress %}

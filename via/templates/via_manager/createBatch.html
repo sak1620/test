@@ -1,0 +1,202 @@
+<!DOCTYPE html> {% extends 'base/base.html' %}
+
+<head>
+    {% load static %}
+    <!-- <link rel="stylesheet" href="{% static 'login/style.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'login/all.css' %}"> -->
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'via_superadmin/css/bootstrap.min.css' %}">
+    <link href="{% static 'via_superadmin/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'via_superadmin/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'via_manager/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'via_manager/css/blueimp-gallery.min.css' %}" rel="stylesheet">
+
+
+    <style>
+        .ibox-content.product-box {
+            cursor: pointer;
+        }
+
+        .selected {
+            box-shadow: 0px 12px 22px 1px #333;
+            background-color: red;
+        }
+
+        .center {
+            margin: 0;
+            width: 50%;
+            padding: 1px;
+        }
+    </style>
+</head>
+
+<!-- <body style="background-color:#f3f3f4"> -->
+
+<!-- <div class="wrapper wrapper-content">
+        <div class="row"> -->
+<div class="col-lg-12">
+    <div class="ibox float-e-margins">
+
+        <div class="ibox-content">
+
+            <h2 class="text-center"><strong>Select Videos to Create Batches</strong></h2>
+
+            <div class="lightBoxGallery">
+                <form action="../create_batch/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for i in vids %}
+                    <!-- <a href="/media/{{ i.url }}" class="" title="" data-gallery=""><img src="/media/{{ i.url }}"
+                                   type="file"  name="file" data-id="{{ i.id }}" style="height: 220px;
+                                   width: 275px;
+                                   padding: 34px;" class="doc">
+                            </a> -->
+                    <div class="checkbox checkbox-inline center">
+                        <input data-id="{{i.id}}" type="checkbox" data-src="/media/{{ i.vid_url }}" class="vid">
+                        <label for="{{i.id}}"> {{ i.vid_url }} </label>
+                    </div>
+                    </a>
+                    {% endfor %}
+                    <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+                    <div id="blueimp-gallery" class="blueimp-gallery" style="display: none;">
+                        <div class="slides" style="width: 110376px;"></div>
+                        <h3 class="title"></h3>
+                        <a class="prev">‹</a>
+                        <a class="next">›</a>
+                        <a class="close">×</a>
+                        <a class="play-pause"></a>
+                        <ol class="indicator"></ol>
+                    </div>
+                    <div>
+                        <label for="name">Batch-Name : </label>
+                        <input id="bname" type="text" name="name">
+                        <br><br>
+                        <div>
+                            <input id="createBatch" type="button" value="Create Batch" class="btn btn-primary">
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<!-- <script src="{% static 'via_superadmin/js/jquery.min.js' %}"></script>
+    <script src="{% static 'via_superadmin/js/jquery-ui-1.10.4.min.js' %}"></script>
+    <script src="{% static 'via_superadmin/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'via_superadmin/js/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'via_superadmin/js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'via_superadmin/js/jquery.jeditable.js' %}"></script> -->
+
+<script src="{% static 'via_superadmin/js/jquery-2.1.1.js' %}"></script>
+<script src="{% static 'via_superadmin/js/jquery-ui-1.10.4.min.js' %}"></script>
+<script src="{% static 'via_superadmin/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'via_superadmin/js/inspinia.js' %}"></script>
+<script src="{% static 'via_superadmin/js/jquery.metisMenu.js' %}"></script>
+<script src="{% static 'via_superadmin/js/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'via_superadmin/js/datatables.min.js' %}"></script>
+<!-- Custom and plugin javascript -->
+<script src="{% static 'via_superadmin/js/inspinia.js' %}"></script>
+<script src="{% static 'via_superadmin/js/pace.min.js' %}"></script>
+<script src="{% static 'via_manager/js/jquery.blueimp-gallery.min.js' %}"></script>
+
+<script>
+    var ls = [];
+    var count = 0
+    var path = "";
+    var pathList = [];
+    var b_id;
+    var vid_ids = [];
+    console.log("$$$$$$$$$$$");
+
+
+    $(document).on("click", ".vid", function () {
+        count += 1
+        vid_ids.push($(this).data("id"))
+
+        console.log("some");
+        console.log(path);
+        //doc_ids = $(this).data('id');
+        //console.log(doc_ids)
+        ls.push($(this).data('src'));
+        //$(this).addClass('selected');
+        path = $(this).data('src');
+        var to = path.lastIndexOf('/');
+        to = to == -1 ? path.length : to + 1;
+        path = path.substring(0, to);
+        pathList.push(path);
+        console.log("Updated path", path);
+
+
+        var vid_src = $(this).attr('src')
+        var list = [];
+        list.push($(this).attr('src'))
+
+
+    });
+
+    $(document).on("click", "#createBatch", function () {
+
+        if ($("#bname").val() == "") {
+            sw_alert("Waring", "Please enter Batch name", "warning")
+            return
+        }
+        
+
+        $.post("../batch_upload/", {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            "id[]": vid_ids
+        }, function (response) {
+
+            console.log(response);
+            // if (response.status == "good") {
+            //  console.log("congrats") 
+            // }
+        });
+
+        console.log(vid_ids);
+        console.log("#########Split Path of Batch#####" + pathList)
+        console.log("###############Path for images###########" + ls)
+        //console.log("Batch id success"+ b_id) 
+
+        $.post("../batch/", {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'path_ls[]': pathList,
+            batch_name: $("#bname").val(),
+            n_images: count,
+            batch_type: 2
+
+        }, function (response) {
+
+            console.log("@@@@@");
+            b_id = response.batch_id
+            console.log("batch Id " + b_id);
+            console.log(response);
+            $.post("../create_batch/", {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'vid_ls[]': ls,
+                batch_id: b_id,
+                batch_name: $("#bname").val()
+            }, function (response) {
+                console.log(response);
+                // alert("Batch Created")
+                sw_alert("Success", " Video Batch Created", "success")
+                $(document).on("click", ".confirm", function () {
+                    location.reload(true);
+
+                });
+            });
+        });
+
+    });
+
+</script>
+<!-- {% csrf_token %} -->
+{% endblock %}
+<!-- </body> -->
+
+</html>

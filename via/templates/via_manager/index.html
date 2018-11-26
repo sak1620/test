@@ -1,0 +1,918 @@
+<!DOCTYPE html> {% extends 'base/base.html' %} {% load static %}
+
+<html lang="en">
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />        
+
+    <title>VIAT</title>
+    <style>
+        .blue-text {
+            color: #aee9ef;
+            border: 20px;
+        }
+
+        #chart {
+            width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+
+        }
+
+        #inner {
+            display: table;
+            margin: 0 auto;
+        }
+
+        .btn-custom {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<!-- <body> -->
+<!-- <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12"> -->
+
+<!-- <div id="page-wrapper"> -->
+
+<div class="wrapper animated fadeIn">
+    <br>
+    <div class="row">
+
+    <div align="center">
+        <a href="../manager/basic-upload/">
+            <button class="btn btn-primary">Videos</button></a>
+        <a href="../manager/image-upload/">
+            <button class="btn btn-primary">Images</button></a>
+    </div>
+
+    <div class="col-md-12 ibox float-e-margins" style="padding:15px;">
+        <div class="ibox-title">
+            <span class="label label-success">Analytics</span>
+        <div class="pull-right">
+            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span></span> <i class="fa fa-caret-down"></i>
+            </div>
+        </div>
+        </div>
+        <div class="ibox-content col-md-12">
+            <div class="col-md-3">
+                <h4>Top Operators</h4>
+                <ul class="list-group clear-list m-t">
+                    {% for x in op_ls %}
+
+                    <li class="list-group-item fist-item">
+                        <span class="pull-right">
+                            78%
+                        </span>
+                        <span class="label label-success">{{ forloop.counter }}</span> {{x.0}}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            <div id="chart-div" class="col-md-9">
+                <canvas id="myChart" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <!-- <h2 style="text-align: center;color: white;">Videos</h2> -->
+
+        <br><br>
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab-1"> Created</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-2">Assigned</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-3">In-Progress</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-4">Completed</a></li>
+
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="panel-body">
+                        <div class="wrapper">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>List of all Created Batches </h5>
+
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>#</th>
+                                                            <!-- <th>Batch </th> -->
+                                                            <th>Name </th>
+                                                            <th>Batch Type </th>
+                                                            <th>Created Date</th>
+                                                            <th>Complete By </th>
+                                                            <!-- <th>Completed </th> -->
+                                                            <th>Assign To</th>
+
+                                                            <!-- <th>Date</th> -->
+                                                            <th>No of Videos/Images</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        {% for x in batchCre %}
+                                                        <tr id="row-batch" data-id="{{x.0}}">
+
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <!-- <td>{{x.batch.name}}</td> -->
+                                                            <td>{{x.1}}</td>
+                                                            <!-- <td>{{x.operator.first_name}} {{x.operator.last_name}}</td> -->
+
+                                                            <td>
+                                                                {% if x.7 is 1 %}
+                                                                Image
+                                                                {% endif %}
+
+                                                                {% if x.7 is 2 %}
+                                                                Video
+                                                                {% endif %}
+
+                                                            </td>
+                                                            <td>{{x.2}}</td>
+
+                                                            <td>
+                                                                <div class="form-group" id="data_1">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                        <input type="text" id='data_cal' class="form-control calendar-custom">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <!-- <td>
+                                                                    <select class="op-select">
+                                                                        <option selected disabled hidden>Choose here</option>
+                                                                        {% for operator in operators %}
+                                                                       
+                                                                        <option id="op" value="{{operator.0}}">{{operator.1}}</option>
+
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                </td>
+                                                                 -->
+                                                            <td>
+                                                                <select id="opselect" data-id="{{x.0}}">
+                                                                    <option selected disabled hidden>Choose here</option>
+                                                                    {% for operator in operators %}
+                                                                    <!-- <option id="op" value="{{operator.id}}" class="blue-text">{{operator.first_name}}</option> -->
+                                                                    <option value="{{operator.0}}">{{operator.1}}</option>
+
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </td>
+
+                                                            <!-- <td>{{x.batch.images}}</td> -->
+                                                            <td>{{x.3}}</td>
+                                                            <td class="center">
+                                                                <a type="button" id="batch_delete" data-id="{{x.0}}"
+                                                                    style="color:red;font-size:18px;" title="Delete">
+                                                                    <i class="fa fa-trash"> </i>
+                                                                </a>
+                                                            </td>
+                                                            <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-2" class="tab-pane">
+                    <div class="panel-body">
+                        <div class="wrapper">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>List of Assigned batches </h5>
+
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>#</th>
+                                                            <!-- <th>Batch </th> -->
+                                                            <th>Name </th>
+                                                            <th>Batch Type </th>
+                                                            <th>Assingned To </th>
+                                                            <th>Assigned Date </th>
+                                                            <th>Complete By</th>
+                                                            <th>No of Images</th>
+                                                                                                                </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        {% for x in asgn_batch %}
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <!-- <td>{{x.batch.name}}</td> -->
+                                                            <td>{{x.5}}</td>
+                                                            <!-- <td>{{x.operator.first_name}} {{x.operator.last_name}}</td> -->
+                                                            <td>{% if x.9 is 1 %}
+                                                                Image
+                                                                {% endif %}
+                                                                {% if x.9 is 2 %}
+                                                                Video
+                                                                {% endif %}
+                                                            </td>
+                                                            <!-- <td>{{x.operator.email}}</td> -->
+                                                            <td>{{x.4}}</td>
+                                                            <!-- <td>
+                                                                    <select>
+                                                                        <option selected disabled hidden>Choose here</option>
+
+                                                                        {% for operator in operators %}
+
+                                                                        <option value="{{operator.0}}">{{operator.1}}</option>
+
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                </td> -->
+                                                            <td>{{x.7}}</td>
+                                                            <td>{{x.8}}</td>
+
+
+                                                            <td>{{x.6}}</td>
+                                                            <!-- <td>{{x.batch.images}}</td> -->
+                                                            <!-- <td>Assigned</td> -->
+                                                            <td class="center">
+                                                                <a type="button" id="batch_delete" data-id="{{x.2}}"
+                                                                    style="color:red;font-size:18px;" title="Delete">
+                                                                    <i class="fa fa-trash"> </i>
+                                                                </a>
+                                                                &nbsp; &nbsp;
+                                                                <a type="button" id="opener_update_batch_details"
+                                                                    data-id="{{x.2}}" data-toggle="modal" style="font-size:18px;"
+                                                                    data-placement="top" data-target="#update_batch_details"
+                                                                    title="Edit">
+                                                                    {%csrf_token %}
+                                                                    <i class="fa fa-gear"> </i>
+                                                                </a>
+
+
+                                                            </td>
+                                                            <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+
+                                                <div>
+                                                    <div class="modal inmodal" id="update_batch_details" tabindex="-1"
+                                                        role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <form id="batch_edit_form" method="POST">
+                                                                {% csrf_token %}
+                                                                <div class="modal-content animated bounceInRight">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            <i class="fa fa-file-archive-o" style="font-size:28px;"></i>&nbsp;&nbsp;Edit
+                                                                            Batch Details</h4>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                            <span class="sr-only">Close</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- form for add custom label-->
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group input_fields_wrap" id="data_1">
+                                                                            <label>Batch Name</label>
+                                                                            <div>
+                                                                                <input type="text" id="b_name"
+                                                                                    placeholder="Enter Label" class="form-control">
+                                                                            </div>
+                                                                            <label>Currently Assigned To</label>
+                                                                            <div>
+                                                                                <input type="text" id="asgn_op"
+                                                                                    placeholder="Enter Label" class="form-control"
+                                                                                    disabled>
+                                                                            </div>
+                                                                            <label>Select to change Assignee</label>
+                                                                            <div>
+                                                                                <select id="asgn_op_new" id="chng_op"
+                                                                                    placeholder="Select Role" class="form-control"
+                                                                                    style="height: 35px;">
+                                                                                    <option selected disabled>Choose
+                                                                                        here</option>
+                                                                                    {% for operator in operators %}
+                                                                                    <!-- <option id="op" value="{{operator.id}}" class="blue-text">{{operator.first_name}}</option> -->
+                                                                                    <option value="{{operator.0}}">{{operator.1}}</option>
+
+                                                                                    {% endfor %}
+                                                                                </select>
+                                                                            </div>
+                                                                            <label>Completion Date</label>
+
+                                                                            <div class="input-group" id="data_1">
+                                                                                <span class="input-group-addon">
+                                                                                    <i class="fa fa-calendar"></i></span>
+                                                                                <input type="text" class="form-control calendar-custom"
+                                                                                    id="copm_date">
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-white"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="btn btn-primary">Save
+                                                                                changes</button>
+                                                                        </div>
+                                                                    </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+               <div id="tab-3" class="tab-pane">
+                    <div class="panel-body">
+                        <div class="wrapper">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>List of In-Progress Batches </h5>
+
+                                        </div>
+                                        <div class="ibox-content">
+                    
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                                            <thead>
+                                                                                <tr>
+                    
+                                                                                    <th>#</th>
+                                                                                    <!-- <th>Batch </th> -->
+                                                                                    <th>Name </th>
+                                                                                    <th>Batch Type </th>
+                                                                                    <!-- <th>Email </th> -->
+                                                                                    <th>Assingned To </th>
+                                                                                    <!-- <th>Completed </th> -->
+                                                                                    <th>No of Images</th>
+                                                                                    <!-- <th>Date</th> -->
+                                                                                    <th>Assigned Date</th>
+                                                                                    <th>Start Date</th>
+                                                                                    <th>Complete By Date</th>
+                                                                                    <th>Task</th>
+                    
+                    
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                    
+                                                                                {% for x in pro_batch %}
+                                                                                <tr {% if x.11 < 0 %}
+                                                                                class=danger
+                                                                                {% endif %}>
+                                                                                    <td>{{ forloop.counter }}</td>
+                                                                                    <!-- <td>{{x.batch.name}}</td> -->
+                                                                                    <td>{{x.5}}</td>
+                                                                                    <!-- <td>{{x.operator.first_name}} {{x.operator.last_name}}</td> -->
+                                                                                    <td>{% if x.10 is 1 %}
+                                                                                            Image
+                                                                                            {% endif %}
+                                                                                            {% if x.10 is 2 %}
+                                                                                            Video
+                                                                                            {% endif %}
+                                                                                    </td>
+                    
+                                                            <!-- <td>{{x.operator.email}}</td> -->
+                                                            <td>
+                                                                {{x.4}}
+                                                                <!-- <select>
+                                                                            {% for operator in operators %}
+                                                                            <option value="{{operator.id}}">{{operator.first_name}}</option>
+
+                                                                            {% endfor %}
+                                                                        </select> -->
+                                                            </td>
+                                                            <td>{{x.6}}</td>
+                                                            <!-- <td>{{x.batch.images}}</td> -->
+                                                            <td>{{x.7}}</td>
+                                                            <td>{{x.8}}</td>
+                                                            <td>{{x.9}}</td>
+                                                            <td><span class="pie" style="display: none;">0.70/1.561</span><svg
+                                                                    class="peity" height="16" width="16">
+                                                                    <path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z"
+                                                                        fill="#1ab394"></path>
+                                                                    <path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z"
+                                                                        fill="#d7d7d7"></path>
+                                                                </svg></td>
+
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="tab-4" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="wrapper">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-title">
+                                                <h5>List of completed batches </h5>
+
+                                            </div>
+                                            <div class="ibox-content">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th>#</th>
+                                                                <!-- <th>Batch </th> -->
+                                                                <th>Name </th>
+                                                                <th>Batch Type </th>
+                                                                <!-- <th>Email </th> -->
+                                                                <th>Assingned To </th>
+                                                                <!-- <th>Completed </th> -->
+                                                                <th>No of Images</th>
+                                                                <th>Created Date</th>
+                                                                <th>Assigned Date</th>
+                                                                <th>Start Date</th>
+                                                                <th>Complete By Date</th>
+                                                                <th>Completed Date</th>
+                                                                <th>Status</th>
+                                                                <!-- <th>Download</th> -->
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            {% for x in comp_batch %}
+                                                            <tr  {% if x.12 is 1 %}id="row-batch-comp"{% endif %} data-id="{{x.2}}" data-b_type="{{x.12}}" {% if x.13 < 0%}
+                                                            class=danger
+                                                            {% endif %}>
+                                                                <td>{{ forloop.counter }}</td>
+                                                                <!-- <td>{{x.batch.name}}</td> -->
+                                                                <td>{{x.5}}</td>
+                                                                <td>{% if x.12 is 1 %}
+                                                                        Image
+                                                                        {% endif %}
+                                                                        {% if x.12 is 2 %}
+                                                                        Video
+                                                                        {% endif %}
+                                                                </td>
+                                                                <!-- <td>{{x.operator.first_name}} {{x.operator.last_name}}</td> -->
+
+                                                                <!-- <td>{{x.operator.email}}</td> -->
+                                                                <td>
+                                                                    {{x.4}}
+                                                                </td>
+                                                                <!-- <td><span class="pie" style="display: none;">0.70/1.561</span><svg
+                                                                                class="peity" height="16" width="16">
+                                                                                <path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z"
+                                                                                    fill="#1ab394"></path>
+                                                                                <path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z"
+                                                                                    fill="#d7d7d7"></path>
+                                                                            </svg></td> -->
+
+                                                                <td>{{x.6}}</td>
+                                                                <!-- <td>{{x.batch.images}}</td> -->
+                                                                <td>{{x.7}}</td>
+                                                                <td>{{x.8}}</td>
+                                                                <td>{{x.9}}</td>
+                                                                <td>{{x.10}}</td>
+                                                                <td>{{x.11}}</td>
+
+                                                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                                                <!-- <td><a href="download/{{x.0}}"><button>Download XML</button></a></td> -->
+
+                                                                <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                            </tr>
+
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        // console.log("inside script 1")    
+
+        $('.table-striped').DataTable({
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                { extend: 'copy' },
+                { extend: 'csv' },
+                { extend: 'excel', title: 'ExampleFile' },
+                { extend: 'pdf', title: 'ExampleFile' },
+
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+
+        });
+        var batch_id, op_id;
+        console.log("inside script 1")
+        $(document).on("click", "#row-batch", function () {
+            batch_id = $(this).data("id")
+            console.log(batch_id)
+        });
+
+        $(document).on("change", "#opselect", function () {
+            op_id = $(this).val()
+            console.log("op id " + op_id)
+            batch_id = $(this).data("id")
+            console.log(batch_id, "rrr:" + $(this).val())
+            console.log("op_id" + op_id)
+            $.post("../manager/select_op/", {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                o_id: op_id,
+                b_id: batch_id
+            },
+                function (response) {
+                    console.log(response);
+
+                });
+            sw_alert("Success", "Batch Assigned", "success")
+            $(document).on("click", ".confirm", function () {
+                location.reload(true);
+            });
+            // alert("Batch assigned")
+            // location.reload(true);
+        });
+    });
+    // $(document).on("click", "#op", function () {
+    //     op_id = $(this).val()
+    //     console.log(batch_id)
+    //     //console.log("op_id"+op_id)   
+    //     $.post("../manager/select_op/", {
+    //         'csrfmiddlewaretoken': '{{ csrf_token }}',
+    //         o_id: op_id,
+    //         b_id: batch_id
+    //     },
+    //         function (response) {
+    //             console.log(response);
+
+    //         });
+    //     alert("Batch assigned")
+    //     location.reload(true);
+    // });
+    // });
+
+    $('#data_1 .calendar-custom').datepicker({
+        todayBtn: "linked",
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        format: "yyyy-mm-dd"
+
+    });
+
+    // $('.calendar-custom').on('change',function(){
+    //     var dateFormat = $('calendar-custom').datepicker("option", "dateFormat")
+    //     b_id = $(this).closest("tr").data("id");
+    //     console.log("custom %^%^%"+b_id)
+    //     // d_date = $( ".calendar-custom" ).datepicker( "option", "dateFormat", "yyyy-mm-dd" ).val();
+    //     // console.log("new date "+ d_date)  
+    //     c_date = $(this).datepicker({dateFormat: 'yyyy-mm-dd'}).val()
+    //     console.log("custom %^%^%"+c_date)
+    //     var userDate = c_date;
+    //     var from = userDate.split("/");
+    //     console.log("from"+from[2]+"-"+from[1]+"-"+from[0])
+    //     cus_date = from[2]+"-"+from[1]+"-"+from[0]
+    //     var parts = cus_date.split("-")
+    //     var mydate = new Date(parts[2], parts[1] - 1, parts[0]); 
+    //     console.log("My date"+ mydate.toDateString());
+    //     //console.log("to UTC", cus_date.toUTCString())
+    //     cus_date = new Date(cus_date)
+    //     var cus_str = cus_date.getFullYear()
+    //     console.log("cus_str"+cus_str)
+    //     var f = new Date(from[2], from[1], from[0]);
+    //     console.log("f"+f)
+    //     var date_string = f.getFullYear() + "-" + f.getMonth() + "-" + f.getDate();
+    //     console.log("updated"+ date_string)
+    //     $.post("update_batch/", {
+    //         'csrfmiddlewaretoken': '{{ csrf_token }}',
+    //          b_id: b_id,
+    //          c_date: cus_date
+
+    //        }, function(response){
+
+    //         console.log(response);   
+    //         alert("Date Assigned")
+    //        });
+    // });
+
+    $('.calendar-custom').datepicker().on('changeDate', function (e) {
+        b_id = $(this).closest("tr").data("id");
+        c_date = $(this, "#data_cal").val();
+        console.log(c_date);
+
+        // console.log("custom %^%^%" + b_id)
+        // c_date = $(this).datepicker({ dateFormat: 'yyyy-mm-dd' }).val()
+        // console.log("custom %^%^%" + c_date)
+        // var userDate = c_date;
+        // var from = userDate.split("/");
+        // var f = new Date(from[2], from[1], from[0]);
+        // var date_string = f.getFullYear() + "-" + f.getMonth() + "-" + f.getDate();
+        console.log("inside calendar")
+        $.post("update_batch/", {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            b_id: b_id,
+            c_date: c_date
+
+        }, function (response) {
+            console.log(response);
+            sw_alert("Success", "Date Assigned", "success")
+            $(document).on("click", ".confirm", function () {
+                location.reload(true);
+
+            });
+            // alert("Date Assigned")
+        });
+    });
+
+</script>
+<script>
+    $(document).ready(function () {
+        $(".batch_rename").focusout(function () {
+            // $(this).css("background-color", "#F111F");
+            // $(this).closest("div").addClass("blue-text")
+            // var x = $(this).closest("div").text()
+            // console.log($(this).closest("div").text())
+            // console.log($(this).data("id"))
+            $.post("../manager/update_batch_name/", {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                b_name: $(this).closest("div").text(),
+                b_id: $(this).data("id")
+            },
+                function (response) {
+                    console.log(response);
+
+                });
+
+
+        });
+    });
+</script>
+<!-- jquery to delete batch -->
+<script>
+    $(document).on('click', '#batch_delete', function (event) {
+        event.preventDefault();
+        console.log("Delete batch request submitted!") // sanity check
+        console.log($(this).data("id"));
+        $.post("batch_delete/", {
+            id: $(this).data("id"),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        }, function (response) {
+
+            console.log(response);
+            location.reload(true);
+        });
+
+    });
+
+</script>
+
+<script>
+    var id_up;
+    $(document).on('click', '#opener_update_batch_details', function (event) {
+        event.preventDefault();
+        console.log("edit form submitted!") // sanity check
+        console.log($(this).data("id"));
+        id_up = $(this).data("id");
+
+        $.post("batch_edit/", {
+            id: $(this).data("id"),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        }, function (response) {
+
+            console.log(response);
+            $("#b_name").val(response.batch_details[0][0]);
+            $("#asgn_op").val(response.batch_details[0][1] + " " + response.batch_details[0][2]);
+            $("#copm_date").val(response.batch_details[0][3]);
+            // $("#myModal1").modal("toggle")
+
+        });
+
+    });
+
+    $('#batch_edit_form').on('submit', function (event) {
+        event.preventDefault();
+        console.log("edit form submitted!") // sanity check
+        console.log(id_up);
+        // console.log($('#asgn_op_new').val())
+
+        $.post("batch_update/", {
+            id: id_up,
+            b_name: $('#b_name').val(),
+            asgn_op: $('#asgn_op_new').val(),
+            copm_date: $('#copm_date').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+
+        }, function (response) {
+
+            console.log(response);
+            $("#myModal1").modal("toggle")
+            location.reload(true);
+
+
+        });
+
+    });
+</script>
+<script>
+$(document).on("click", "#row-batch-comp", function () {
+
+    console.log("id of this row is: " + $(this).data("id"));
+    b_id = $(this).data("id");
+    batch_type = $(this).data("b_type");
+
+    var url_n = "completed_batch/";
+    var form = $('<form action="' + url_n + '" method="post">' +
+        '{% csrf_token %}' +
+        '<input type="hidden" name="b_id" value="' + b_id + '" />' +
+        '<input type="hidden" name="b_type" value="' + batch_type + '" />' +
+        '</form>');
+    $('body').append(form);
+    form.submit();
+
+
+});
+
+
+    var created1 = 0;
+    var assigned1 = 0;
+    var prog1 = 0;
+    var completed1 = 0;
+
+    function chart_data_update(start_date, end_date){
+    $.post("chart_data/", { csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(), start_date:start_date, end_date:end_date },
+        function (response) {
+
+            console.log(response.data);
+            created1 = response.data[0];
+            assigned1 = response.data[1];
+            prog1 = response.data[2];
+            completed1 = response.data[3];
+            $('#myChart').remove()          
+            $('#chart-div').html('<canvas id="myChart" height="100"></canvas>')
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Batches Created", "Batches Assigned", "Batches In-progress", "Batches Completed"],
+                    datasets: [{
+                        label: "Number of Batches",
+                        data: [created1, assigned1, prog1, completed1],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            "rgba(201, 203, 207, 0.2)"
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            "rgb(201, 203, 207)"
+
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+        })
+    }
+
+</script>
+
+<!-- Date-Range Filter -->
+
+<script type="text/javascript">
+    manager_chart()                
+    function manager_chart() {
+    
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+    
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            end1 = end.format('YYYY-MM-DD').toString();
+            start1 = start.format('YYYY-MM-DD').toString();
+            chart_data_update(start1,end1)
+        }
+    
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+    
+        cb(start, end);
+    
+    }
+</script>
+
+{% endblock %}
+
+</html>

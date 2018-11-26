@@ -1,0 +1,41 @@
+{% extends "base/base1.html" %}
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+	<title>Image Annotation Tool - {% block head_title %}A tool for annotating driving images{% endblock %}</title>
+	<meta name="description" content='{% if head_description %}{{ head_description }}{% else %}Tools for extracting semantic segmentation labels from driving images{% endif %}'/>
+	<meta name="author" content="{% if head_author %}{{ head_author }}{% else %}UC Berkeley{% endif %}"/>
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="{% static 'via_image/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'via_image/css/animate.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'via_image/css/font-awesome.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'via_image/css/style.css' %}" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/dropzone/basic.css' %}" /> -->
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/dropzone/dropzone.css' %}" /> -->
+	
+	{% block css_responsive %}
+	<link href="{% static 'via_image/css/bootstrap-responsive.min.css' %}" rel="stylesheet" type="text/css"/>
+	{% endblock %}
+
+	{% block css %}
+	{% endblock %}
+</head>
+
+{
+	{% block content %}
+		<div id="outer" style="width:100%">
+			<div id="inner">
+				<a href="/segment/{{ label_image }}">
+					<button class="btn-custom">Labeling Interface</button></a>
+				<a href="/review/{{ review_image }}">
+					<button class="	btn-custom"> Review Interface</button></a>
+			</div>
+		</div>
+		<br><br>
+		{% endblock content %}
+	</html>

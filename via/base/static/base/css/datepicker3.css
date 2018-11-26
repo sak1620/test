@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SDCS-AiTouch</title>
+
+    <!-- Mainly scripts -->
+    <script src="/static/base/js/jquery-2.1.1.js"></script>
+    <script src="/static/base/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="/static/base/js/bootstrap.min.js"></script>
+    <script src="/static/base/js/jquery.metisMenu.js"></script>
+    <script src="/static/base/js/jquery.slimscroll.min.js"></script>
+    <script src="/static/base/js/jquery.jeditable.js"></script>
+    <script src="/static/base/js/chosen.jquery.js"></script>
+    <!-- DROPZONE -->
+    <script src="/static/base/js/dropzone.js"></script>
+    <script src="/static/base/js/datatables.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="/static/base/js/inspinia.js"></script>
+    <script src="/static/base/js/pace.min.js"></script>
+    <!-- Switchery -->
+    <script src="/static/base/js/switchery.js"></script>
+    
+    <script src="/static/base/js/Chart.min.js"></script>
+    <!-- Data picker -->
+    <script src="/static/base/js/bootstrap-datepicker.js"></script>
+    <!-- Graph Chart -->
+    <!-- <script src="/static/base/js/batchchartgraph.js"></script> -->
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/bootstrap.min.css.map" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/jquery-ui.min.css" />
+    <link rel="icon" type="image/png" href="/static/base/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/static/base/css/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/dropzone/basic.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/datepicker3.css" />
+
+    
+    
+    
+    <style>
+        .aitcolor{
+            width: 100%;margin-bottom: 0;min-height:0;
+            background: -webkit-radial-gradient(center, ellipse cover, #2f4050 0%,#2f4050 100%);
+        }
+        .homecolor{
+            color: white;
+        }
+    </style>
+    
+</head>
+
+<body style="height:100%;background-color: white;">
+
+    <div class="wrapper" style="background-color:rgb(255, 255, 255);height:100%;padding:0px">
+        <div class="row border-bottom" style="background-color:rgb(255, 255, 255);">
+            <nav class="navbar navbar-static col-lg-12 aitcolor">
+                <div class="navbar-header col-lg-4" >
+                    <span>
+                        <a href="" id="home"><img id="clogo" alt="image" class="img" src="http://aitouch.in/wp-content/themes/aitouch/images/logo.png" style="height: 50px;width: 150px;"></a>
+                    </span>
+
+                </div>
+                <!-- <p class="text-center">Welcome to Smart Document CLassifier</p> -->
+
+                <!-- <div> -->
+                <!-- <div>manager</div> -->
+
+
+                <div class="col-lg-4" style="text-align:center;padding: 10px;">
+                    
+                    <a href="../manager" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    
+                </div>
+
+
+
+                <!-- </div> -->
+                <div class="col-lg-4 homecolor" style="text-align: right;padding:5px;">
+                    Manager (manager)
+                        <br>
+                    <a href="../../logout" class="homecolor">
+                        <i class="fa fa-sign-out"></i> Log out &nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+
+                </div>
+
+
+            </nav>
+
+        </div>
+
+
+        <div class="row" style="height:100%;padding-top: 1vh;">
+            
+            
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SDCS</title>
+    <!-- <script src="/static/base/js/batchchartgraph.js"></script> -->
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/base/css/font-awesome.css" /> -->
+
+    <style>
+        .month, .year{
+            margin:0.3vw; 
+
+        }
+        .blue-text {
+            color: #aee9ef;
+            border: 20px;
+            background: #4CAF50;
+        }
+
+        #chart {
+            width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+
+        }
+
+        #inner {
+            display: table;
+            margin: 0 auto;
+        }
+
+        .btn-custom {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        
+    </style>
+</head>
+<!-- <body> -->
+<!-- <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12"> -->
+
+<!-- <div id="page-wrapper"> -->
+
+<div class="wrapper animated fadeIn">
+    <br>
+    <div class="row">
+
+        <div style="width: 50%; margin: 0 auto;">
+            <div style="width: 40%; margin: 0 auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../basic_upload/">
+                    <button class="btn btn-primary">Fetch Documents</button></a>
+                <a href="../../manager/batch_show">
+                    <button class="btn btn-primary"> Create Batches </button></a>
+            </div>
+        </div>
+        <div id="chart">
+            <div class="col-lg-6">
+                <div class="ibox">
+                    <br>
+                    <div class="ibox-title" style="text-align:center;">
+                        <h3>Batch Status</h3>
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <canvas id="doughnutChart" height="140"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ibox">
+                    <br>
+                    <div class="ibox-title" style="text-align:center;">
+                        <h3>Performance Chart </h3>
+
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <canvas id="lineChart" height="140"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12" style="background-color: #2f4050;">
+            <br><br>
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab-1"> Created</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-2">Assigned</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-3">In-Progress</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-4">Completed</a></li>
+
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <div class="wrapper">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-title">
+                                                <h5>List of all Created Batches </h5>
+
+                                            </div>
+                                            <div class="ibox-content">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th>#</th>
+                                                                <!-- <th>Batch </th> -->
+                                                                <th>Name </th>
+                                                                <!-- <th>Email </th> -->
+                                                                <th>Assingn To </th>
+                                                                <!-- <th>Completed </th> -->
+                                                                <th>Complete By</th>
+                                                                <th>No of Images</th>
+                                                                <!-- <th>Date</th> -->
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            
+                                                            <tr id="row-batch" data-id="18">
+
+                                                                <td>1</td>
+                                                                <!-- <td></td> -->
+                                                                <td>
+                                                                    <div class="batch_rename" contenteditable="true"
+                                                                        style="max-width: 150px;" data-id="18">some batch</div>
+
+
+
+                                                                </td>
+                                                                <!-- <td> </td> -->
+
+                                                                <!-- <td></td> -->
+                                                                <td>
+                                                                    <select class="op-select" id="opselect" data-id="18">
+                                                                        <option selected disabled hidden>Choose here</option>
+                                                                        
+                                                                        <!-- <option id="op" value="" class="blue-text"></option> -->
+                                                                        <option id="operator_select" value="1">Operator</option>
+
+                                                                        
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group" id="data_1">
+                                                                        <div class="input-group date">
+                                                                            <span class="input-group-addon cal"><i
+                                                                                    class="fa fa-calendar"></i></span>
+                                                                            <input type="text" id="data_cal" class="form-control calendar-custom calen_test"
+                                                                                >
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td>1</td>
+                                                                <!-- <td></td> -->
+                                                                <td>1</td>
+                                                                <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                            </tr>
+
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="wrapper">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-title">
+                                                <h5>List of Assigned batches </h5>
+
+                                            </div>
+                                            <div class="ibox-content">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th>#</th>
+                                                                <!-- <th>Batch </th> -->
+                                                                <th>Name </th>
+                                                                <!-- <th>Email </th> -->
+                                                                <th>Assingned To </th>
+                                                                <!-- <th>Completed </th> -->
+                                                                <th>Compete By</th>
+                                                                <th>No of Images</th>
+                                                                <!-- <th>Date</th> -->
+                                                                <th>Status</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <!-- <td></td> -->
+                                                                <td>test1</td>
+                                                                <!-- <td> </td> -->
+
+                                                                <!-- <td></td> -->
+                                                                <td>Operator</td>
+                                                                <!-- <td>
+                                                                    <select>
+                                                                        <option selected disabled hidden>Choose here</option>
+
+                                                                        
+
+                                                                        <option value="1">Operator</option>
+
+                                                                        
+                                                                    </select>
+                                                                </td> -->
+                                                                <td>Sept. 11, 2018</td>
+
+                                                                <td>2</td>
+                                                                <!-- <td></td> -->
+                                                                <td>Assigned</td>
+                                                                <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                                <td class="center">
+                                                                    <a type="button" id="batch_delete" data-id="19"
+                                                                        style="color:red;font-size:18px;" title="Delete">
+                                                                        <i class="fa fa-trash"> </i>
+                                                                    </a>
+                                                                    &nbsp; &nbsp;
+                                                                    <a type="button" id="opener_update_batch_details"
+                                                                        data-id="19" data-toggle="modal" style="font-size:18px;"
+                                                                        data-placement="top" data-target="#update_batch_details"
+                                                                        title="Edit">
+                                                                        <input type="hidden" name="csrfmiddlewaretoken" value="cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl">
+                                                                        <i class="fa fa-gear"> </i>
+                                                                    </a>
+
+
+                                                                </td>
+                                                            </tr>
+
+                                                            
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <!-- <td></td> -->
+                                                                <td>batch testing</td>
+                                                                <!-- <td> </td> -->
+
+                                                                <!-- <td></td> -->
+                                                                <td>Operator</td>
+                                                                <!-- <td>
+                                                                    <select>
+                                                                        <option selected disabled hidden>Choose here</option>
+
+                                                                        
+
+                                                                        <option value="1">Operator</option>
+
+                                                                        
+                                                                    </select>
+                                                                </td> -->
+                                                                <td>None</td>
+
+                                                                <td>2</td>
+                                                                <!-- <td></td> -->
+                                                                <td>Assigned</td>
+                                                                <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                                <td class="center">
+                                                                    <a type="button" id="batch_delete" data-id="20"
+                                                                        style="color:red;font-size:18px;" title="Delete">
+                                                                        <i class="fa fa-trash"> </i>
+                                                                    </a>
+                                                                    &nbsp; &nbsp;
+                                                                    <a type="button" id="opener_update_batch_details"
+                                                                        data-id="20" data-toggle="modal" style="font-size:18px;"
+                                                                        data-placement="top" data-target="#update_batch_details"
+                                                                        title="Edit">
+                                                                        <input type="hidden" name="csrfmiddlewaretoken" value="cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl">
+                                                                        <i class="fa fa-gear"> </i>
+                                                                    </a>
+
+
+                                                                </td>
+                                                            </tr>
+
+                                                            
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <!-- <td></td> -->
+                                                                <td>Invoice-Batch</td>
+                                                                <!-- <td> </td> -->
+
+                                                                <!-- <td></td> -->
+                                                                <td>Operator</td>
+                                                                <!-- <td>
+                                                                    <select>
+                                                                        <option selected disabled hidden>Choose here</option>
+
+                                                                        
+
+                                                                        <option value="1">Operator</option>
+
+                                                                        
+                                                                    </select>
+                                                                </td> -->
+                                                                <td>None</td>
+
+                                                                <td>2</td>
+                                                                <!-- <td></td> -->
+                                                                <td>Assigned</td>
+                                                                <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                                <td class="center">
+                                                                    <a type="button" id="batch_delete" data-id="17"
+                                                                        style="color:red;font-size:18px;" title="Delete">
+                                                                        <i class="fa fa-trash"> </i>
+                                                                    </a>
+                                                                    &nbsp; &nbsp;
+                                                                    <a type="button" id="opener_update_batch_details"
+                                                                        data-id="17" data-toggle="modal" style="font-size:18px;"
+                                                                        data-placement="top" data-target="#update_batch_details"
+                                                                        title="Edit">
+                                                                        <input type="hidden" name="csrfmiddlewaretoken" value="cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl">
+                                                                        <i class="fa fa-gear"> </i>
+                                                                    </a>
+
+
+                                                                </td>
+                                                            </tr>
+
+                                                            
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <!-- <td></td> -->
+                                                                <td>ocr test1</td>
+                                                                <!-- <td> </td> -->
+
+                                                                <!-- <td></td> -->
+                                                                <td>Operator</td>
+                                                                <!-- <td>
+                                                                    <select>
+                                                                        <option selected disabled hidden>Choose here</option>
+
+                                                                        
+
+                                                                        <option value="1">Operator</option>
+
+                                                                        
+                                                                    </select>
+                                                                </td> -->
+                                                                <td>None</td>
+
+                                                                <td>1</td>
+                                                                <!-- <td></td> -->
+                                                                <td>Assigned</td>
+                                                                <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                                <td class="center">
+                                                                    <a type="button" id="batch_delete" data-id="16"
+                                                                        style="color:red;font-size:18px;" title="Delete">
+                                                                        <i class="fa fa-trash"> </i>
+                                                                    </a>
+                                                                    &nbsp; &nbsp;
+                                                                    <a type="button" id="opener_update_batch_details"
+                                                                        data-id="16" data-toggle="modal" style="font-size:18px;"
+                                                                        data-placement="top" data-target="#update_batch_details"
+                                                                        title="Edit">
+                                                                        <input type="hidden" name="csrfmiddlewaretoken" value="cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl">
+                                                                        <i class="fa fa-gear"> </i>
+                                                                    </a>
+
+
+                                                                </td>
+                                                            </tr>
+
+                                                            
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <!-- <td></td> -->
+                                                                <td>ocr test</td>
+                                                                <!-- <td> </td> -->
+
+                                                                <!-- <td></td> -->
+                                                                <td>Operator</td>
+                                                                <!-- <td>
+                                                                    <select>
+                                                                        <option selected disabled hidden>Choose here</option>
+
+                                                                        
+
+                                                                        <option value="1">Operator</option>
+
+                                                                        
+                                                                    </select>
+                                                                </td> -->
+                                                                <td>None</td>
+
+                                                                <td>1</td>
+                                                                <!-- <td></td> -->
+                                                                <td>Assigned</td>
+                                                                <!-- <td><a href="#"><i class="fa fa-check text-navy"></i></a></td> -->
+                                                                <td class="center">
+                                                                    <a type="button" id="batch_delete" data-id="15"
+                                                                        style="color:red;font-size:18px;" title="Delete">
+                                                                        <i class="fa fa-trash"> </i>
+                                                                    </a>
+                                                                    &nbsp; &nbsp;
+                                                                    <a type="button" id="opener_update_batch_details"
+                                                                        data-id="15" data-toggle="modal" style="font-size:18px;"
+                                                                        data-placement="top" data-target="#update_batch_details"
+                                                                        title="Edit">
+                                                                        <input type="hidden" name="csrfmiddlewaretoken" value="cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl">
+                                                                        <i class="fa fa-gear"> </i>
+                                                                    </a>
+
+
+                                                                </td>
+                                                            </tr>
+
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- as -->
+
+                                                    <div>
+                                                        <div class="modal inmodal" id="update_batch_details" tabindex="-1"
+                                                            role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <form id="batch_edit_form" method="POST">
+                                                                    <input type="hidden" name="csrfmiddlewaretoken" value="cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl">
+                                                                    <div class="modal-content animated bounceInRight">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <i class="fa fa-file-archive-o" style="font-size:28px;"></i>&nbsp;&nbsp;Edit
+                                                                                Batch Details</h4>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                                <span class="sr-only">Close</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <!-- form for add custom label-->
+                                                                        <div class="modal-body">
+                                                                            <div class="form-group input_fields_wrap" id="data_1">
+                                                                                <label>Batch Name</label>
+                                                                                <div>
+                                                                                    <input type="text" id="b_name"
+                                                                                        placeholder="Enter Label" class="form-control">
+                                                                                </div>
+                                                                                <label>Currently Assigned To</label>
+                                                                                <div>
+                                                                                    <input type="text" id="asgn_op"
+                                                                                        placeholder="Enter Label" class="form-control" disabled>
+                                                                                </div>
+                                                                                <label>Select to change Assignee</label>
+                                                                                <div>
+                                                                                    <select id="asgn_op_new" id="chng_op"
+                                                                                        placeholder="Select Role" class="form-control"
+                                                                                        style="height: 35px;">
+                                                                                        <option selected disabled>Choose
+                                                                                            here</option>
+                                                                                            
+                                                                                            <!-- <option id="op" value="" class="blue-text"></option> -->
+                                                                                            <option value="1">Operator</option>
+                    
+                                                                                            
+                                                                                    </select>
+                                                                                </div>
+                                                                                <label>Completion Date</label>
+                                                                                
+                                                                                        <div class="input-group date">
+                                                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                                            <input type="text" class="form-control" id="copm_date">
+                                                                                        </div>
+                                                                            
+                                                        
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-white"
+                                                                                    data-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary">Save
+                                                                                    changes</button>
+                                                                            </div>
+                                                                        </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- mm -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-3" class="tab-pane">
+                    <div class="panel-body">
+                        <div class="wrapper">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>List of In-Progress Batches </h5>
+
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>#</th>
+                                                            <!-- <th>Batch </th> -->
+                                                            <th>Name </th>
+                                                            <!-- <th>Email </th> -->
+                                                            <th>Assingned To </th>
+                                                            <!-- <th>Completed </th> -->
+                                                            <th>Task</th>
+                                                            <th>No of Images</th>
+                                                            <!-- <th>Date</th> -->
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-4" class="tab-pane">
+                    <div class="panel-body">
+                        <div class="wrapper">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5>List of completed batches </h5>
+
+                                        </div>
+                                        <div class="ibox-content">
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>#</th>
+                                                            <!-- <th>Batch </th> -->
+                                                            <th>Name </th>
+                                                            <!-- <th>Email </th> -->
+                                                            <th>Assingned To </th>
+                                                            <!-- <th>Completed </th> -->
+                                                            <th>Task</th>
+                                                            <th>No of Images</th>
+                                                            <!-- <th>Date</th> -->
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br><br>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<script>
+$('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "yyyy-mm-dd"
+            });
+
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $('.table-striped').DataTable({
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                    extend: 'copy'
+                },
+                {
+                    extend: 'csv'
+                },
+                {
+                    extend: 'excel',
+                    title: 'ExampleFile'
+                },
+                {
+                    extend: 'pdf',
+                    title: 'ExampleFile'
+                },
+
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+
+        });
+        var batch_id, op_id;
+
+        $(document).on("click", "#row-batch", function () {
+            batch_id = $(this).data("id")
+            console.log(batch_id)
+        });
+
+        $(document).on("change", "#opselect", function () {
+            op_id = $(this).val()
+            console.log("op id "+ op_id)
+            batch_id = $(this).data("id")
+            console.log(batch_id, "rrr:"+$(this).val())
+            console.log("op_id"+op_id)   
+            $.post("../manager/select_op/", {
+                    'csrfmiddlewaretoken': 'cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl',
+                    o_id: op_id,
+                    b_id: batch_id
+                },
+                function (response) {
+                    console.log(response);
+
+                });
+            alert("Batch assigned")
+            location.reload(true);
+        });
+    });
+
+    $('.calendar-custom').datepicker({
+        todayBtn: "linked",
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        format: "yyyy-mm-dd"
+    });
+
+    $('.calendar-custom').datepicker().on('changeDate', function (e) {
+        b_id = $(this).closest("tr").data("id");
+        c_date = $("#data_cal").val()
+        console.log($("#data_cal").val())
+        // var userDate = c_date;
+        // var from = userDate.split("/");
+        // var f = new Date(from[2], from[1], from[0]);
+        // var date_string = f.getFullYear() + "-" + f.getMonth() + "-" + f.getDate();
+        $.post("update_batch/", {
+            'csrfmiddlewaretoken': 'cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl',
+            b_id: b_id,
+            c_date: c_date
+
+        }, function (response) {
+
+            console.log(response);
+            alert("Date Assigned")
+        });
+    });
+
+     //Flot Pie Chart
+     console.log([(1, 1), (2, 19)]);
+
+var data1 = ['Created', 'Assigned'];
+var data2 = [1, 19];
+var colors = ["#a3e1d4", "#D4AC0D", "#7D3C98"];
+var highlight = ["#1ab394", "#1ab394"];
+function random(array) {
+    return array[Math.floor(Math.random() * array.length)]
+}
+
+$(document).ready(function () {
+    var doughnutData = []
+    for (var i = 0; i < data1.length; i++) {
+        doughnutData[i] = {
+            value: data2[i],
+            color: random(colors),
+            highlight: random(highlight),
+            label: data1[i]
+        }
+    }
+
+    var doughnutOptions = {
+        segmentShowStroke: true,
+        segmentStrokeColor: "#fff",
+        segmentStrokeWidth: 2,
+        percentageInnerCutout: 45, // This is 0 for Pie charts
+        animationSteps: 100,
+        animationEasing: "easeOutBounce",
+        animateRotate: true,
+        animateScale: false,
+        responsive: true,
+    };
+
+
+    var ctx = document.getElementById("doughnutChart").getContext("2d");
+    var myNewChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+
+});
+
+$(document).ready(function () {
+    var v_labels = ['2018-08-31', '2018-09-01'];
+console.log(v_labels)
+var v_data = [2, 1];
+var lineData = {
+    labels: v_labels,
+    datasets: [
+        {
+            label: "Example dataset",
+            fillColor: "rgba(220,220,0,0.5)",
+            strokeColor: "rgba(220,220,0,1)",
+            pointColor: "rgba(220,220,0,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: v_data
+        },
+
+    ]
+};
+var lineOptions = {
+    scaleShowGridLines: true,
+    scaleGridLineColor: "rgba(0,0,0,.05)",
+    scaleGridLineWidth: 1,
+    bezierCurve: true,
+    bezierCurveTension: 0.4,
+    pointDot: true,
+    pointDotRadius: 4,
+    pointDotStrokeWidth: 1,
+    pointHitDetectionRadius: 20,
+    datasetStroke: true,
+    datasetStrokeWidth: 2,
+    datasetFill: true,
+    responsive: true,
+};
+var ctx1 = document.getElementById("lineChart").getContext("2d");
+var myNewChart = new Chart(ctx1).Line(lineData, lineOptions);
+
+});
+   
+</script> 
+<script>
+        $(document).ready(function () {
+            $(".batch_rename").focusout(function () {
+                // $(this).css("background-color", "#F111F");
+                // $(this).closest("div").addClass("blue-text")
+                // var x = $(this).closest("div").text()
+                // console.log($(this).closest("div").text())
+                // console.log($(this).data("id"))
+                $.post("../manager/update_batch_name/", {
+                        'csrfmiddlewaretoken': 'cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl',
+                        b_name: $(this).closest("div").text(),
+                        b_id: $(this).data("id")
+                    },
+                    function (response) {
+                        console.log(response);
+    
+                    });
+    
+    
+            });
+        });
+    </script>
+    <!-- jquery to delete batch -->
+    <script>
+            $(document).on('click', '#batch_delete', function (event) {
+                event.preventDefault();
+                console.log("Delete batch request submitted!") // sanity check
+                console.log($(this).data("id"));
+                $.post("batch_delete/", {
+                    id: $(this).data("id"),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, function (response) {
+    
+                    console.log(response);
+                    location.reload(true);
+                });
+    
+            });
+            
+    </script>
+    
+    <script>
+        var id_up;
+        $(document).on('click', '#opener_update_batch_details', function (event) {
+            event.preventDefault();
+            console.log("edit form submitted!") // sanity check
+            console.log($(this).data("id"));
+            id_up = $(this).data("id");
+    
+            $.post("batch_edit/", {
+                id: $(this).data("id"),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }, function (response) {
+    
+                console.log(response);
+                $("#b_name").val(response.batch_details[0][0]);
+                $("#asgn_op").val(response.batch_details[0][1]+" "+response.batch_details[0][2]);
+                $("#copm_date").val(response.batch_details[0][3]);
+                // $("#myModal1").modal("toggle")
+    
+            });
+    
+        });
+    
+        $('#batch_edit_form').on('submit', function (event) {
+            event.preventDefault();
+            console.log("edit form submitted!") // sanity check
+            console.log(id_up);
+            // console.log($('#asgn_op_new').val())
+    
+            $.post("batch_update/", {
+                id: id_up,
+                b_name: $('#b_name').val(),
+                asgn_op: $('#asgn_op_new').val(),
+                copm_date: $('#copm_date').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+    
+            }, function (response) {
+    
+                console.log(response);
+                $("#myModal1").modal("toggle")
+                location.reload(true);
+    
+    
+            });
+    
+        });
+    </script>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="/static/sdcs_operator/js/jquery-2.1.1.js"></script>
+    <script src="/static/sdcs_operator/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="/static/sdcs_operator/js/bootstrap.min.js"></script>
+    <script src="/static/sdcs_operator/js/inspinia.js"></script>
+    <script src="/static/sdcs_operator/js/jquery.metisMenu.js"></script>
+    <script src="/static/sdcs_operator/js/jquery.slimscroll.min.js"></script>
+    <script src="/static/sdcs_operator/js/datatables.min.js"></script>
+    <script src="/static/sdcs_manager/js/file-upload/jquery.ui.widget.js"></script>
+    <script src="/static/sdcs_manager/js/file-upload/jquery.iframe-transport.js"></script>
+    <script src="/static/sdcs_manager/js/file-upload/jquery.fileupload.js"></script>
+    <script src="/static/sdcs_manager/js/file-upload/basic-upload.js"></script>
+    <script>
+  
+        $.post("../loadimage/", {
+            'csrfmiddlewaretoken': 'cYOGbSOZF0kS5Sp3ruzwbrsgOAgYkpVx7LdatNEWvwtKmSLaR7hoijrAUBrKULnl',
+
+        }, function (response) {
+             $('img').attr("src","../media/"+response.logo);  
+            console.log("hello"+response.logo);
+            // alert("Date Assigned")
+        });
+        $(document).ready(function(){  
+            console.log("manager")
+            if('manager'== "manager" || 'manager' == "operator")
+            {
+            console.log("here")
+            $('#home').on('click','a').attr("href","../../../manager");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

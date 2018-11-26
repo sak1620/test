@@ -1,0 +1,16 @@
+{% load compress %}
+{% load static %}
+{% compress js %}
+<script type="text/javascript" src="{% static 'via_image/js/lib/jquery.hotkeys.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/lib/kinetic-v4.3.3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/lib/delaunay.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/util.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/geom.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/actions.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/common/active_timer.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/poly/actions.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/poly/controller_state.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/poly/controller_ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/poly/stage_ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'via_image/js/poly/polygon_ui.js' %}"></script>
+{% endcompress %}

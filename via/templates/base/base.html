@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image-Annotations</title>
+
+    <!-- Mainly scripts -->
+    <script src="{% static 'base/js/jquery-2.1.1.js' %}"></script>
+    <script src="{% static 'base/js/jquery-ui-1.10.4.min.js' %}"></script>
+    
+    <script src="{% static 'base/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'base/js/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'base/js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'base/js/jquery.jeditable.js' %}"></script>
+    <script src="{% static 'base/js/chosen.jquery.js' %}"></script>
+    <!-- DROPZONE -->
+    <script src="{% static 'base/js/datatables.min.js' %}"></script>
+
+    <!-- <script src="{% static 'base/js/dropzone.js' %}"></script> -->
+    <!-- Custom and plugin javascript -->
+    <script src="{% static 'base/js/inspinia.js' %}"></script>
+    <script src="{% static 'base/js/pace.min.js' %}"></script>
+    <!-- Switchery -->
+    <script src="{% static 'base/js/switchery.js' %}"></script>
+
+    <script src="{% static 'base/js/Chart.min.js' %}"></script>
+    <script src="{% static 'via_manager/js/sweetalert.min.js' %}"></script>
+    
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/bootstrap.min.css.map' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/jquery-ui.min.css' %}" />
+    <link rel="icon" type="image/png" href="{% static 'via_image/img/logo.png' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/animate.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/datatables.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/font-awesome.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/dropzone/basic.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base/css/segment.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'via_manager/css/sweetalert.css' %}" />
+
+    
+    
+    <style>
+        .aitcolor{
+            width: 100%;margin-bottom: 0;min-height:0;
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(8,118,215,1) 0%, rgba(21,62,165,1) 100%);
+        }
+        .homecolor{
+            color: white;
+        }
+        .row{
+            margin: auto
+            ;
+        }
+    </style>
+    {% block css_responsive %}
+	<link href="{% static 'base/css/bootstrap-responsive.min.css' %}" rel="stylesheet" type="text/css"/>
+	{% endblock %}
+
+	{% block css %}
+	{% endblock %}
+    
+</head>
+
+<body style="height:100%;background-color:#f3f3f4;">
+
+    <div class="wrapper" style="background-color:rgb(255, 255, 255);height:100%;padding:0px">
+        <div class="row border-bottom" style="background-color:rgb(255, 255, 255);">
+            <nav class="navbar navbar-static col-lg-12" style="background-color:#057EB2;">
+                <div class="navbar-header col-lg-4" >
+                    <span>
+                        <img alt="image" class="img" src="{% static 'via_image/img/logo.png' %}" style="height: 50px;width: 150px;">
+                    </span>
+
+                </div>
+                <!-- <p class="text-center">Welcome to Smart Document CLassifier</p> -->
+
+                <!-- <div> -->
+                <!-- <div>{{user_group}}</div> -->
+
+
+                <div class="col-lg-4" style="text-align:center;padding: 10px;">
+                    {% if user_group == "manager" and page == "index"%}
+                    <a href="../" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif user_group == "manager" and page == "create_batch" %}
+                    <a href="../" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif user_group == "manager" and page == "basic_upload" %}
+                    <a href="../" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif user_group == "operator" and page == "op_index"%}
+                    <a href="../operator" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif user_group == "operator" and page == "op_validate"%}
+                    <a href="../" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif user_group == "admin" and page == "ad_index" %}
+                    <a href="../sdcs_admin/" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif page == "annotate" %}
+                    <a href="../" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif page == "index1" %}
+                    <a href="../operator/" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    {% elif page == "video_annotate" %}
+                    <a href="../" class="homecolor">
+                        <i class="fa fa-home" aria-hidden="true" style="font-size: 15px;"></i>
+                        <span style="font-size: 20px;" class="nav-label">Home</span>
+                    </a>
+                    <!-- <a style="margin-left: 31px;">
+                        <a href="dashboard"><i class="fa fa-pie-chart" aria-hidden="true"></i>
+                            <span style="font-size:20px;" class="nav-label">DashBoard </span></a>
+                    </a> -->
+                    {% endif %}
+                </div>
+
+
+
+                <!-- </div> -->
+                <div class="col-lg-4 homecolor" style="text-align: right;padding:5px;">
+                    {{ request.user.first_name}} ({{user_group}})
+                        <br>
+                    <a href="../../logout" class="homecolor">
+                        <i class="fa fa-sign-out"></i> Log out &nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+
+                </div>
+
+
+            </nav>
+
+        </div>
+
+
+        <div class="row" style="height:86%;">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+    {% block body_tag %}
+    <body data-spy="scroll" data-target=".navbar" data-offset="50" class="color">
+    {% endblock %}
+    
+    {% block navbar %}
+    {% endblock %}
+    
+    {% block header %}{% endblock %}
+    
+    {% block subnav %}{% endblock %}
+    
+    {% block container %}
+    {% block content_tag %}
+    <div id='content-container' class='container'>
+    {% endblock %}
+    </div>
+    {% endblock %}
+    
+    {% block footer %}
+    {% endblock %}
+    
+    {% include "via_image/base_scripts.html" %}
+    {% block scripts %}{% endblock %}
+    
+    {% block modals %}
+    {% include "via_image/modal/modal_error.html" %}
+    {% include "via_image/modal/modal_loading.html" %}
+    {% include "via_image/modal/modal_form.html" %}
+    {% endblock %}
+
+    <div class="footer" style="background-color:#057EB2;bottom: 0;
+    position: absolute;
+    height: 60px;
+    ">
+        <div class="row col-md-12">
+            <div class="left_side col-md-6" align="left">
+                <span style="color:white;font-size: 16">Privacy Policy | TOS | GDPR</span>
+            </div>
+
+            <div class="right_side col-md-6" align="right">
+                <img style="width: 85px; height: 50px" src="{{ '/media/logo/via-logo.png' }}">
+                <span style="color:white;font-size: 16">Product of Aitouch</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="{% static 'base/js/jquery-2.1.1.js' %}"></script>
+    <script src="{% static 'base/js/jquery-ui-1.10.4.min.js' %}"></script>
+    <script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'base/js/inspinia.js' %}"></script>
+    <script src="{% static 'base/js/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'base/js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'base/js/datatables.min.js' %}"></script>
+    <script src="{% static 'via_manager/js/file-upload/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'via_manager/js/file-upload/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'via_manager/js/file-upload/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'via_manager/js/file-upload/basic-upload.js' %}"></script>
+
+    <script>
+    function sw_alert(title1, text1, type1)
+        {
+            swal({
+                title: title1,
+                text: text1,
+                type: type1
+            });
+        }
+        if($(document).height() > $(window).height())
+        {
+            $(".footer").css("position", "relative");
+            
+        }
+    </script>
+    
+    
+    <script type="text/javascript">
+        var idleTime = 0;
+        $(document).ready(function () {
+            //Increment the idle time counter every minute.
+            var idleInterval = setInterval(timerIncrement, 600000); // 1 minute
+            console.log("here")
+            //Zero the idle timer on mouse movement.
+            $(this).mousemove(function (e) {
+                idleTime = 0;
+            });
+            $(this).keypress(function (e) {
+                idleTime = 0;
+            });
+        });
+        
+        function timerIncrement() {
+            console.log("not here")
+            idleTime = idleTime + 1;
+            if (idleTime > 1) { // 2 minutes
+                // window.location.reload();
+                console.log(idleTime)
+                window.location = "../../../../../../../logout/"
+
+            }
+        }
+        </script> 
+
+</body>
+
+</html>

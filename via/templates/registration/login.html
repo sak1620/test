@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SDCS | Login</title>
+
+    {% load static %}
+
+
+    <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}">
+    <link href="{% static 'base/css/datatables.min.css' %}" rel="stylesheet">
+    <link href="{% static 'base/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'base/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'base/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'base/css/font-awesome.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <img alt="image" src="{% static 'base/images/via-logo.png' %}" style="height:150px;width:150px;">
+
+            </div>
+            <h3>Login</h3>
+
+
+            <form class="m-t" role="form" action="../login/" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+                <a href="../password-reset/">
+                    <small>Forgot password?</small>
+                </a>
+            </form>
+            <p class="m-t">
+                <small>AiTouch&copy; 2018</small>
+            </p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="{% static 'base/js/jquery-2.1.1.js' %}"></script>
+    <script src="{% static 'base/js/jquery-ui-1.10.4.min.js' %}"></script>
+    <script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+{% extends 'base/base.html' %}
+{% load static %}
+<html lang="en">
+
+<head>
+    {% block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'via_superadmin/css/bootstrap.min.css' %}">
+    <link href="{% static 'via_superadmin/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'via_superadmin/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'via_superadmin/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+    .btn-custom {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<!-- <body style="background-color:#f3f3f4"> -->
+    <!-- <div class="wrapper wrapper-content">
+        <div class="row"> -->
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+
+                    <div class="ibox-content">
+
+                    <h2 class="text-center"><strong>Select Videos To Upload Or Create Batches</strong></h2>
+                    <br><br><br><br>
+                    <div class="text-center">
+                        <input class="btn-custom" id="fileupload" type="file" accept="video/*" name="vid_url" multiple style="display: none;" data-url="{% url 'basic_upload' %}" data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+                        <button type="button" class="btn btn-custom js-upload-photos">
+                             Fetch Videos
+                        </button>
+                        <!-- <button class="btn btn-primary js-upload-photos">Create Batches</button> -->
+                        <a href="../../manager/batch_show/">
+                            <button class="btn btn-custom">Create Batches</button>
+                        </a>
+                    </div> 
+                        <br><br><br>   
+                       
+                        <table id="gallery" class="">
+                            <thead>
+                                <tr>
+                                    <h3><strong>Uploaded Documents</strong></h3>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for photo in photos %}
+                                <tr>
+                                    <td><a href="{{ photo.file.vid_url }}">{{ photo.file.vid_url }}</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <div class="modal fade" id="modal-progress" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Uploading...</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    
+    {% endblock %}
+</body>
+
+</html>
